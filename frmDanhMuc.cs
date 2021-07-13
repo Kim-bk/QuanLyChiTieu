@@ -28,5 +28,10 @@ namespace QuanLyChiTieu
             grvDanhMuc.Columns[0].HeaderText = "Tên danh mục";
             grvDanhMuc.Columns[0].Width = 320;
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
