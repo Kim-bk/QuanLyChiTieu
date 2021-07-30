@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbQuanLyChiTieu" Class="dbcsdlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-EJUEGTMT\SQLEXPRESS14;Initial Catalog=dbQuanLyChiTieu;Integrated Security=True" SettingsObjectName="QuanLyChiTieu.Properties.Settings" SettingsPropertyName="dbQuanLyChiTieuConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbAccount" Member="tbAccounts">
+    <Type Name="tbAccount">
+      <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="account_username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbAccount_tbChiTieu" Member="tbChiTieus" ThisKey="account_id" OtherKey="account_id" Type="tbChiTieu" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbThongKe" Member="tbThongKes">
+    <Type Name="tbThongKe">
+      <Column Name="thongke_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="thongke_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbChiTieuChiTiet" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbChiTieuChiTiet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbChiTieu" Member="tbChiTieus">
+    <Type Name="tbChiTieu">
+      <Column Name="chitieu_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="created_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="total_cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieuChiTiet" />
+      <Association Name="tbAccount_tbChiTieu" Member="tbAccount" ThisKey="account_id" OtherKey="account_id" Type="tbAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbChiTieuChiTiet" Member="tbChiTieuChiTiets">
+    <Type Name="tbChiTieuChiTiet">
+      <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="chitieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="diengiai_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbThongKes" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbThongKe" />
+      <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieu" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieu" IsForeignKey="true" />
+      <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbDienGiai" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbDienGiai" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbDanhMuc" Member="tbDanhMucs">
+    <Type Name="tbDanhMuc">
+      <Column Name="danhmuc_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="danhmuc_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbDanhMuc_tbDienGiai" Member="tbDienGiais" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDienGiai" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbDienGiai" Member="tbDienGiais">
+    <Type Name="tbDienGiai">
+      <Column Name="diengiai_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="diengiai_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="danhmuc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="diengiai_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbChiTieuChiTiet" />
+      <Association Name="tbDanhMuc_tbDienGiai" Member="tbDanhMuc" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDanhMuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

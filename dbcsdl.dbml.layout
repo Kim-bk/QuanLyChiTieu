@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="dbcsdl">
+  <DataContextMoniker Name="/dbcsdlDataContext" />
+  <nestedChildShapes>
+    <classShape Id="af37c461-ffc5-4b03-b32d-35c8ca62c3d9" absoluteBounds="0.75, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbAccount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5de3a354-85e0-49ad-9130-976306d002ef" absoluteBounds="0.765, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e34d324d-b70f-4be1-8fc8-e99a0712ae2c" absoluteBounds="9, 1, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbThongKe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d431250-01ed-469d-a84c-5e8f6fa3661f" absoluteBounds="9.015, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="050c3bed-e9d7-47cc-abfd-3333608bc9d8" absoluteBounds="3.5, 0.875, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbChiTieu" />
+      <nestedChildShapes>
+        <elementListCompartment Id="06580118-8019-403d-b082-57276d99698d" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa00ae5f-4dcd-4543-9996-4b9125d491e9" absoluteBounds="6.25, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbChiTieuChiTiet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c0fd586-f380-4159-8075-def6d31ab0c1" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="87d5f64d-7ea2-4e7e-9dda-b90e92635331" absoluteBounds="0.75, 4.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbDanhMuc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eb3515f8-caef-4fa3-ab1f-07479a812657" absoluteBounds="0.765, 4.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f8ed1e5-edfc-4ab7-809c-c95c4de837b7" absoluteBounds="3.5, 3.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/dbcsdlDataContext/tbDienGiai" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5fa548f-a8d9-418a-afc8-48d9096143e0" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.69314697265625); (3.5 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbcsdlDataContext/tbAccount/tbAccount_tbChiTieu" />
+      <nodes>
+        <classShapeMoniker Id="af37c461-ffc5-4b03-b32d-35c8ca62c3d9" />
+        <classShapeMoniker Id="050c3bed-e9d7-47cc-abfd-3333608bc9d8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 1.69314697265625); (9 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbcsdlDataContext/tbChiTieuChiTiet/tbChiTieuChiTiet_tbThongKe" />
+      <nodes>
+        <classShapeMoniker Id="fa00ae5f-4dcd-4543-9996-4b9125d491e9" />
+        <classShapeMoniker Id="e34d324d-b70f-4be1-8fc8-e99a0712ae2c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.66429768880208); (6.25 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbcsdlDataContext/tbChiTieu/tbChiTieu_tbChiTieuChiTiet" />
+      <nodes>
+        <classShapeMoniker Id="050c3bed-e9d7-47cc-abfd-3333608bc9d8" />
+        <classShapeMoniker Id="fa00ae5f-4dcd-4543-9996-4b9125d491e9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.66429768880208); (7.25 : 4.66429768880208); (7.25 : 2.45359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbcsdlDataContext/tbDienGiai/tbDienGiai_tbChiTieuChiTiet" />
+      <nodes>
+        <classShapeMoniker Id="0f8ed1e5-edfc-4ab7-809c-c95c4de837b7" />
+        <classShapeMoniker Id="fa00ae5f-4dcd-4543-9996-4b9125d491e9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.72199625651042); (3.5 : 4.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbcsdlDataContext/tbDanhMuc/tbDanhMuc_tbDienGiai" />
+      <nodes>
+        <classShapeMoniker Id="87d5f64d-7ea2-4e7e-9dda-b90e92635331" />
+        <classShapeMoniker Id="0f8ed1e5-edfc-4ab7-809c-c95c4de837b7" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
