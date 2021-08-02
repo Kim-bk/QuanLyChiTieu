@@ -29,7 +29,6 @@ namespace QuanLyChiTieu
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangNhap));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDangNhap = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@ namespace QuanLyChiTieu
             this.txtMatKhau.Location = new System.Drawing.Point(793, 444);
             this.txtMatKhau.Multiline = true;
             this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(347, 45);
             this.txtMatKhau.TabIndex = 3;
             // 
@@ -89,6 +89,7 @@ namespace QuanLyChiTieu
             this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnThoat
             // 
@@ -139,7 +140,6 @@ namespace QuanLyChiTieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1924, 809);
             this.Controls.Add(this.linklblDangKy);
             this.Controls.Add(this.label4);
@@ -152,6 +152,7 @@ namespace QuanLyChiTieu
             this.Controls.Add(this.label1);
             this.Name = "frmDangNhap";
             this.Text = "frmDangNhap";
+            this.Load += new System.EventHandler(this.frmDangNhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

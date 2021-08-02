@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyChiTieu.App_Data;
 using QuanLyChiTieu.Common;
 
 namespace QuanLyChiTieu
@@ -18,16 +19,23 @@ namespace QuanLyChiTieu
         public frmDangKy()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
         }
 
+
+        protected void Reset()
+        {
+            txtDangNhap.Text = "";
+            txtFullname.Text = "";
+            txtPass.Text = "";
+            txtRePass.Text = "";
+        }
 
         protected bool IsEmptyInput()
         {
             if(txtDangNhap.Text == "" ||
             txtPass.Text == "" ||
-            txtRePass.Text == "")
+            txtRePass.Text == "" ||
+            txtFullname.Text == "")
             {
                 return true;
             }    
@@ -54,9 +62,12 @@ namespace QuanLyChiTieu
                     tbAccount user = new tbAccount();
                     user.account_username = txtDangNhap.Text;
                     user.account_password = encrypt.MD5Hash(txtPass.Text);
+                    user.account_fullname = txtFullname.Text;
+                    user.account_createddate = DateTime.Now;
                     db.tbAccounts.InsertOnSubmit(user);
                     db.SubmitChanges();
                     MessageBox.Show("Tạo tài khoản thành công!");
+                    Reset();
                 }
             }
         }
@@ -64,6 +75,14 @@ namespace QuanLyChiTieu
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmDangKy_Load(object sender, EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
         }
     }
 }

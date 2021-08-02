@@ -7,15 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyChiTieu.App_Data;
 
 namespace QuanLyChiTieu
 {
     public partial class frmTrangChu : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
+
+        public delegate void SendName(string name);
+        public SendName Sender;
         public frmTrangChu()
         {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
             InitializeComponent();
+            Sender = new SendName(GetName);
+        }
+
+        private void GetName(string name)
+        {
+            lblName.Text = "Chào " + name + "!";
         }
 
         public void nhung(Form f)
@@ -38,6 +50,24 @@ namespace QuanLyChiTieu
         {
             frmNhapChiTieu chitieu = new frmNhapChiTieu();
             nhung(chitieu);
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            string message = "Bạn có muốn đăng xuất?";
+            string title = "Thông báo";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                frmDangNhap dn = new frmDangNhap();
+                dn.ShowDialog();
+            }
+            else 
+            {; }
+               
         }
     }
 }

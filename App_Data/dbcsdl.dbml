@@ -5,6 +5,10 @@
       <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="account_username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="account_password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_fullname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_createddate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="account_phonenumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="tbAccount_tbChiTieu" Member="tbChiTieus" ThisKey="account_id" OtherKey="account_id" Type="tbChiTieu" />
     </Type>
   </Table>
@@ -31,6 +35,7 @@
       <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="chitieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="diengiai_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbThongKes" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbThongKe" />
       <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieu" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieu" IsForeignKey="true" />

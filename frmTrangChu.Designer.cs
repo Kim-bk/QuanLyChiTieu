@@ -40,6 +40,7 @@ namespace QuanLyChiTieu
             this.nhậpDanhMụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.lblName = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@ namespace QuanLyChiTieu
             // 
             // menuStrip2
             // 
-            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip2.BackColor = System.Drawing.Color.White;
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnTrịHệThốngToolStripMenuItem,
@@ -86,6 +87,7 @@ namespace QuanLyChiTieu
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(252, 34);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // nhậpChiTiêuToolStripMenuItem
             // 
@@ -125,12 +127,24 @@ namespace QuanLyChiTieu
             this.pnlMain.Size = new System.Drawing.Size(2018, 711);
             this.pnlMain.TabIndex = 7;
             // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.BackColor = System.Drawing.Color.White;
+            this.lblName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.lblName.Location = new System.Drawing.Point(1373, 9);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(97, 36);
+            this.lblName.TabIndex = 8;
+            this.lblName.Text = "label1";
+            // 
             // frmTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1924, 809);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.menuStrip2);
             this.Name = "frmTrangChu";
@@ -152,5 +166,6 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.ToolStripMenuItem nhậpDanhMụcToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
         private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Label lblName;
     }
 }

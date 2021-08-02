@@ -11,6 +11,10 @@ create table tbAccount
 	account_id int identity primary key,
 	account_username nvarchar(max),
 	account_password nvarchar(max),
+	account_fullname nvarchar(max),
+	account_createddate datetime,
+	account_phonenumber nvarchar(max),
+	account_email nvarchar(max),
 )
 
 go

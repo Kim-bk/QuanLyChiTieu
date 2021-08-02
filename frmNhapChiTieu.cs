@@ -3,6 +3,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using QuanLyChiTieu.App_Data;
 
 namespace QuanLyChiTieu
 {

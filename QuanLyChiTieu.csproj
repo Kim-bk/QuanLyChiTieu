@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\cls_Encrypt.cs" />
-    <Compile Include="dbcsdl.designer.cs">
+    <Compile Include="App_Data\dbcsdl.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbcsdl.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Common\cls_Encrypt.cs" />
     <Compile Include="frmDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,12 +109,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="dbcsdl.dbml">
+    <None Include="App_Data\dbcsdl.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dbcsdl.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="dbcsdl.dbml.layout">
+    <None Include="App_Data\dbcsdl.dbml.layout">
       <DependentUpon>dbcsdl.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">

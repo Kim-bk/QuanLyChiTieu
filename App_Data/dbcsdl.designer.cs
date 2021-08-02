@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QuanLyChiTieu
+namespace QuanLyChiTieu.App_Data
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -141,6 +141,14 @@ namespace QuanLyChiTieu
 		
 		private string _account_password;
 		
+		private string _account_fullname;
+		
+		private System.Nullable<System.DateTime> _account_createddate;
+		
+		private string _account_phonenumber;
+		
+		private string _account_email;
+		
 		private EntitySet<tbChiTieu> _tbChiTieus;
 		
     #region Extensibility Method Definitions
@@ -153,6 +161,14 @@ namespace QuanLyChiTieu
     partial void Onaccount_usernameChanged();
     partial void Onaccount_passwordChanging(string value);
     partial void Onaccount_passwordChanged();
+    partial void Onaccount_fullnameChanging(string value);
+    partial void Onaccount_fullnameChanged();
+    partial void Onaccount_createddateChanging(System.Nullable<System.DateTime> value);
+    partial void Onaccount_createddateChanged();
+    partial void Onaccount_phonenumberChanging(string value);
+    partial void Onaccount_phonenumberChanged();
+    partial void Onaccount_emailChanging(string value);
+    partial void Onaccount_emailChanged();
     #endregion
 		
 		public tbAccount()
@@ -217,6 +233,86 @@ namespace QuanLyChiTieu
 					this._account_password = value;
 					this.SendPropertyChanged("account_password");
 					this.Onaccount_passwordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_fullname", DbType="NVarChar(MAX)")]
+		public string account_fullname
+		{
+			get
+			{
+				return this._account_fullname;
+			}
+			set
+			{
+				if ((this._account_fullname != value))
+				{
+					this.Onaccount_fullnameChanging(value);
+					this.SendPropertyChanging();
+					this._account_fullname = value;
+					this.SendPropertyChanged("account_fullname");
+					this.Onaccount_fullnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_createddate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> account_createddate
+		{
+			get
+			{
+				return this._account_createddate;
+			}
+			set
+			{
+				if ((this._account_createddate != value))
+				{
+					this.Onaccount_createddateChanging(value);
+					this.SendPropertyChanging();
+					this._account_createddate = value;
+					this.SendPropertyChanged("account_createddate");
+					this.Onaccount_createddateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_phonenumber", DbType="NVarChar(MAX)")]
+		public string account_phonenumber
+		{
+			get
+			{
+				return this._account_phonenumber;
+			}
+			set
+			{
+				if ((this._account_phonenumber != value))
+				{
+					this.Onaccount_phonenumberChanging(value);
+					this.SendPropertyChanging();
+					this._account_phonenumber = value;
+					this.SendPropertyChanged("account_phonenumber");
+					this.Onaccount_phonenumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_email", DbType="NVarChar(MAX)")]
+		public string account_email
+		{
+			get
+			{
+				return this._account_email;
+			}
+			set
+			{
+				if ((this._account_email != value))
+				{
+					this.Onaccount_emailChanging(value);
+					this.SendPropertyChanging();
+					this._account_email = value;
+					this.SendPropertyChanged("account_email");
+					this.Onaccount_emailChanged();
 				}
 			}
 		}
@@ -633,6 +729,8 @@ namespace QuanLyChiTieu
 		
 		private System.Nullable<int> _diengiai_id;
 		
+		private System.Nullable<double> _price;
+		
 		private System.Nullable<int> _soluong;
 		
 		private EntitySet<tbThongKe> _tbThongKes;
@@ -651,6 +749,8 @@ namespace QuanLyChiTieu
     partial void Onchitieu_idChanged();
     partial void Ondiengiai_idChanging(System.Nullable<int> value);
     partial void Ondiengiai_idChanged();
+    partial void OnpriceChanging(System.Nullable<double> value);
+    partial void OnpriceChanged();
     partial void OnsoluongChanging(System.Nullable<int> value);
     partial void OnsoluongChanged();
     #endregion
@@ -727,6 +827,26 @@ namespace QuanLyChiTieu
 					this._diengiai_id = value;
 					this.SendPropertyChanged("diengiai_id");
 					this.Ondiengiai_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
+		public System.Nullable<double> price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
 				}
 			}
 		}

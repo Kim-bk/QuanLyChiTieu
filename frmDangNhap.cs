@@ -7,28 +7,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyChiTieu.App_Data;
+using QuanLyChiTieu.Common;
 
 namespace QuanLyChiTieu
 {
     public partial class frmDangNhap : Form
     {
+        dbcsdlDataContext db = new dbcsdlDataContext();
+        cls_Encrypt encrypt = new cls_Encrypt();
         public frmDangNhap()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
+            
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            string message = "Bạn có muốn thoát?";
+            string title = "Thông báo";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {; }
         }
 
         private void linklblDangKy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Close();
+            //this.Close();
             frmDangKy dk = new frmDangKy();
-            dk.ShowDialog();
+         //   dk.ShowDialog();
+            dk.Show();
+        }
+
+        protected bool IsEmptyInput()
+        {
+            if (txtDangNhap.Text == "" || txtMatKhau.Text == "")
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(!IsEmptyInput())
+                {
+                    var user = (from ac in db.tbAccounts
+                                where ac.account_username == txtDangNhap.Text
+                                && ac.account_password == encrypt.MD5Hash(txtMatKhau.Text)
+                                select ac).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        this.Hide();
+                        frmTrangChu trangchu = new frmTrangChu();
+                        trangchu.Show();
+                        trangchu.Sender(user.account_fullname);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tài khoản không tồn tại!");
+                        txtDangNhap.Text = "";
+                        txtMatKhau.Text = "";
+                    }
+                }
+                else 
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                }
+
+            }
+            catch(Exception)
+            {; }
+        }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
         }
     }
 }
