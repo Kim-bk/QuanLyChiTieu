@@ -33,5 +33,11 @@ namespace QuanLyChiTieu
             frmDanhMuc dm = new frmDanhMuc();
             nhung(dm);
         }
+
+        private void nhậpChiTiêuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNhapChiTieu chitieu = new frmNhapChiTieu();
+            nhung(chitieu);
+        }
     }
 }

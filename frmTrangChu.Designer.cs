@@ -51,6 +51,7 @@ namespace QuanLyChiTieu
             // 
             // menuStrip2
             // 
+            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnTrịHệThốngToolStripMenuItem,
@@ -93,6 +94,7 @@ namespace QuanLyChiTieu
             this.nhậpChiTiêuToolStripMenuItem.Name = "nhậpChiTiêuToolStripMenuItem";
             this.nhậpChiTiêuToolStripMenuItem.Size = new System.Drawing.Size(215, 54);
             this.nhậpChiTiêuToolStripMenuItem.Text = "Nhập chi tiêu";
+            this.nhậpChiTiêuToolStripMenuItem.Click += new System.EventHandler(this.nhậpChiTiêuToolStripMenuItem_Click);
             // 
             // nhậpDanhMụcToolStripMenuItem
             // 
