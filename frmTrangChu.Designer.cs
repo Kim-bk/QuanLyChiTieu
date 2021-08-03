@@ -56,6 +56,7 @@ namespace QuanLyChiTieu
             // menuStrip2
             // 
             this.menuStrip2.BackColor = System.Drawing.Color.White;
+            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnTrịHệThốngToolStripMenuItem,
@@ -131,13 +132,13 @@ namespace QuanLyChiTieu
             // theoNgàyToolStripMenuItem
             // 
             this.theoNgàyToolStripMenuItem.Name = "theoNgàyToolStripMenuItem";
-            this.theoNgàyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.theoNgàyToolStripMenuItem.Size = new System.Drawing.Size(239, 34);
             this.theoNgàyToolStripMenuItem.Text = "Theo ngày";
             // 
             // trongThángToolStripMenuItem
             // 
             this.trongThángToolStripMenuItem.Name = "trongThángToolStripMenuItem";
-            this.trongThángToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.trongThángToolStripMenuItem.Size = new System.Drawing.Size(239, 34);
             this.trongThángToolStripMenuItem.Text = "Trong tháng";
             this.trongThángToolStripMenuItem.Click += new System.EventHandler(this.trongThángToolStripMenuItem_Click);
             // 
@@ -147,6 +148,7 @@ namespace QuanLyChiTieu
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlMain.BackgroundImage")));
+            this.pnlMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlMain.Location = new System.Drawing.Point(16, 91);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(75, 77, 75, 77);
             this.pnlMain.Name = "pnlMain";

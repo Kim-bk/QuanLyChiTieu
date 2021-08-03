@@ -140,8 +140,10 @@ namespace QuanLyChiTieu
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 1026);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "frmDanhMuc";
             this.Text = "Danh mục ";
             this.panel1.ResumeLayout(false);

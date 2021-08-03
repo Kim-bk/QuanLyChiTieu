@@ -78,7 +78,6 @@ namespace QuanLyChiTieu
                     // tạo mới chi tiêu
                     tbChiTieu chitieu = new tbChiTieu();
                     chitieu.created_date = Convert.ToDateTime(dtepickerNgayNhap.Value);
-                    chitieu.total_cost = Convert.ToInt32(txtChi.Text);
                     chitieu.account_id = _idUser;
                     db.tbChiTieus.InsertOnSubmit(chitieu);
 
@@ -86,7 +85,7 @@ namespace QuanLyChiTieu
                     tbDienGiai diengiai = new tbDienGiai();
                     diengiai.diengiai_name = txtDienGiai.Text;
                     diengiai.danhmuc_id = getIdCbb;
-                    diengiai.diengiai_price = 0;
+                    diengiai.diengiai_price = Convert.ToInt32(txtChi.Text);
                     db.tbDienGiais.InsertOnSubmit(diengiai);
                     db.SubmitChanges();
 

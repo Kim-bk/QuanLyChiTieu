@@ -58,10 +58,8 @@ namespace QuanLyChiTieu
 
         private void linklblDangKy_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //this.Close();
             frmDangKy dk = new frmDangKy();
-            //   dk.ShowDialog();
-            dk.Show();
+            dk.ShowDialog();
         }
 
         private void btnOk_Click_1(object sender, EventArgs e)

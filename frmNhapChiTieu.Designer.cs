@@ -42,9 +42,9 @@ namespace QuanLyChiTieu
             this.dtepickerNgayNhap = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbbOptions = new System.Windows.Forms.ComboBox();
             this.grvLichSu = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbbOptions = new System.Windows.Forms.ComboBox();
             this.pnlNhapChiTieu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvLichSu)).BeginInit();
@@ -181,6 +181,21 @@ namespace QuanLyChiTieu
             this.panel1.Size = new System.Drawing.Size(784, 860);
             this.panel1.TabIndex = 11;
             // 
+            // cbbOptions
+            // 
+            this.cbbOptions.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.cbbOptions.FormattingEnabled = true;
+            this.cbbOptions.Items.AddRange(new object[] {
+            "Tất cả",
+            "Trong ngày",
+            "Trong tuần",
+            "Trong tháng"});
+            this.cbbOptions.Location = new System.Drawing.Point(27, 133);
+            this.cbbOptions.Name = "cbbOptions";
+            this.cbbOptions.Size = new System.Drawing.Size(247, 41);
+            this.cbbOptions.TabIndex = 12;
+            this.cbbOptions.Text = "Tất cả";
+            // 
             // grvLichSu
             // 
             this.grvLichSu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -203,29 +218,16 @@ namespace QuanLyChiTieu
             this.label6.TabIndex = 10;
             this.label6.Text = "Lịch sử";
             // 
-            // cbbOptions
-            // 
-            this.cbbOptions.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.cbbOptions.FormattingEnabled = true;
-            this.cbbOptions.Items.AddRange(new object[] {
-            "Tất cả",
-            "Trong ngày",
-            "Trong tuần",
-            "Trong tháng"});
-            this.cbbOptions.Location = new System.Drawing.Point(27, 133);
-            this.cbbOptions.Name = "cbbOptions";
-            this.cbbOptions.Size = new System.Drawing.Size(247, 41);
-            this.cbbOptions.TabIndex = 12;
-            this.cbbOptions.Text = "Tất cả";
-            // 
             // frmNhapChiTieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 809);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlNhapChiTieu);
+            this.DoubleBuffered = true;
             this.Name = "frmNhapChiTieu";
             this.Text = "frmNhapChiTieu";
             this.Load += new System.EventHandler(this.frmNhapChiTieu_Load);

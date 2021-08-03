@@ -29,6 +29,7 @@ namespace QuanLyChiTieu
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangKy));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@ namespace QuanLyChiTieu
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(572, 386);
+            this.label1.Location = new System.Drawing.Point(566, 438);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(182, 30);
             this.label1.TabIndex = 0;
@@ -56,7 +57,7 @@ namespace QuanLyChiTieu
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(572, 507);
+            this.label2.Location = new System.Drawing.Point(566, 559);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 30);
             this.label2.TabIndex = 1;
@@ -66,7 +67,7 @@ namespace QuanLyChiTieu
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(572, 622);
+            this.label3.Location = new System.Drawing.Point(566, 674);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(226, 30);
             this.label3.TabIndex = 2;
@@ -75,7 +76,7 @@ namespace QuanLyChiTieu
             // txtDangNhap
             // 
             this.txtDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtDangNhap.Location = new System.Drawing.Point(816, 371);
+            this.txtDangNhap.Location = new System.Drawing.Point(810, 423);
             this.txtDangNhap.Multiline = true;
             this.txtDangNhap.Name = "txtDangNhap";
             this.txtDangNhap.Size = new System.Drawing.Size(347, 45);
@@ -84,7 +85,7 @@ namespace QuanLyChiTieu
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtPass.Location = new System.Drawing.Point(816, 492);
+            this.txtPass.Location = new System.Drawing.Point(810, 544);
             this.txtPass.Multiline = true;
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
@@ -94,7 +95,7 @@ namespace QuanLyChiTieu
             // txtRePass
             // 
             this.txtRePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtRePass.Location = new System.Drawing.Point(816, 607);
+            this.txtRePass.Location = new System.Drawing.Point(810, 659);
             this.txtRePass.Multiline = true;
             this.txtRePass.Name = "txtRePass";
             this.txtRePass.PasswordChar = '*';
@@ -105,7 +106,7 @@ namespace QuanLyChiTieu
             // 
             this.btnDangKy.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnDangKy.Font = new System.Drawing.Font("Times New Roman", 10F);
-            this.btnDangKy.Location = new System.Drawing.Point(816, 728);
+            this.btnDangKy.Location = new System.Drawing.Point(810, 780);
             this.btnDangKy.Name = "btnDangKy";
             this.btnDangKy.Size = new System.Drawing.Size(128, 59);
             this.btnDangKy.TabIndex = 6;
@@ -117,7 +118,7 @@ namespace QuanLyChiTieu
             // 
             this.btnThoat.BackColor = System.Drawing.Color.Red;
             this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 10F);
-            this.btnThoat.Location = new System.Drawing.Point(1035, 728);
+            this.btnThoat.Location = new System.Drawing.Point(1029, 780);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(128, 59);
             this.btnThoat.TabIndex = 7;
@@ -129,6 +130,7 @@ namespace QuanLyChiTieu
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(873, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(208, 45);
@@ -139,7 +141,7 @@ namespace QuanLyChiTieu
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(572, 264);
+            this.label4.Location = new System.Drawing.Point(566, 316);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 30);
             this.label4.TabIndex = 10;
@@ -148,7 +150,7 @@ namespace QuanLyChiTieu
             // txtFullname
             // 
             this.txtFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtFullname.Location = new System.Drawing.Point(816, 249);
+            this.txtFullname.Location = new System.Drawing.Point(810, 301);
             this.txtFullname.Multiline = true;
             this.txtFullname.Name = "txtFullname";
             this.txtFullname.Size = new System.Drawing.Size(347, 45);
@@ -159,6 +161,8 @@ namespace QuanLyChiTieu
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 809);
             this.Controls.Add(this.txtFullname);
             this.Controls.Add(this.label4);
@@ -171,7 +175,6 @@ namespace QuanLyChiTieu
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "frmDangKy";
             this.Text = "frmDangKy";
             this.Load += new System.EventHandler(this.frmDangKy_Load);
