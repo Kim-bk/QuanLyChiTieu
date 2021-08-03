@@ -158,6 +158,7 @@ namespace QuanLyChiTieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1924, 809);
             this.Controls.Add(this.txtFullname);
             this.Controls.Add(this.label4);
@@ -170,6 +171,7 @@ namespace QuanLyChiTieu
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "frmDangKy";
             this.Text = "frmDangKy";
             this.Load += new System.EventHandler(this.frmDangKy_Load);

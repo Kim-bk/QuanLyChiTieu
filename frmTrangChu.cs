@@ -14,21 +14,24 @@ namespace QuanLyChiTieu
     public partial class frmTrangChu : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
-
-        public delegate void SendName(string name);
-        public SendName Sender;
+        private static tbAccount _user;
+        public delegate void SendUser(tbAccount user);
+        public SendUser Sender;
         public frmTrangChu()
         {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
-            Sender = new SendName(GetName);
+            Sender = new SendUser(GetUser);
         }
 
-        private void GetName(string name)
+
+        private void GetUser(tbAccount user)
         {
-            lblName.Text = "Chào " + name + "!";
+            lblName.Text = "Chào " + user.account_fullname + "!";
+            _user = user;
         }
+
 
         public void nhung(Form f)
         {
@@ -49,25 +52,23 @@ namespace QuanLyChiTieu
         private void nhậpChiTiêuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmNhapChiTieu chitieu = new frmNhapChiTieu();
+            chitieu.Sender(_user);
             nhung(chitieu);
         }
-
-        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        private void đăngXuấtToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-           
             string message = "Bạn có muốn đăng xuất?";
             string title = "Thông báo";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
             if (result == DialogResult.Yes)
             {
-                this.Hide();
+                this.Dispose();
                 frmDangNhap dn = new frmDangNhap();
                 dn.ShowDialog();
             }
-            else 
+            else
             {; }
-               
         }
     }
 }

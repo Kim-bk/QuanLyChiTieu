@@ -10,11 +10,18 @@ namespace QuanLyChiTieu
     public partial class frmNhapChiTieu : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
+        private static int _idUser;
+        public delegate void SendUser(tbAccount user);
+        public SendUser Sender;
         public frmNhapChiTieu()
         {
             InitializeComponent();
-            loaddata();
-            loadLichSu();
+            Sender = new SendUser(GetUser);
+        }
+
+        public void GetUser(tbAccount user)
+        {
+            _idUser = user.account_id;
         }
 
         protected void loaddata()
@@ -28,12 +35,19 @@ namespace QuanLyChiTieu
             cbbDanhMuc.DisplayMember = "danhmuc_name";
         }
 
+        protected void Reset()
+        {
+            txtDienGiai.Text = "";
+            txtChi.Text = "";
+        }
+       
         protected void loadLichSu()
         {
             var data = from ls in db.tbChiTieus
                        join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
                        join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                       orderby ls.created_date descending
+                       where ls.account_id == _idUser
+                       orderby ls.created_date ascending
                        select new
                        {
                            //ngaytao = Convert.ToDateTime(ls.created_date).ToString('dd/MM/yyyy'),
@@ -65,6 +79,7 @@ namespace QuanLyChiTieu
                     tbChiTieu chitieu = new tbChiTieu();
                     chitieu.created_date = Convert.ToDateTime(dtepickerNgayNhap.Value);
                     chitieu.total_cost = Convert.ToInt32(txtChi.Text);
+                    chitieu.account_id = _idUser;
                     db.tbChiTieus.InsertOnSubmit(chitieu);
 
                     //tạo mới diễn giải
@@ -83,14 +98,22 @@ namespace QuanLyChiTieu
                     db.SubmitChanges();
                 
                     MessageBox.Show("Thêm chi tiêu thành công!");
+                    Reset();
                     loadLichSu();
                 }
                 catch(Exception)
                 {
+                    Reset();
                     ;
                 }
             }    
 
+        }
+
+        private void frmNhapChiTieu_Load(object sender, EventArgs e)
+        {
+            loaddata();
+            loadLichSu();
         }
     }
 }

@@ -22,7 +22,27 @@ namespace QuanLyChiTieu
             
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
+        protected bool IsEmptyInput()
+        {
+            if (txtDangNhap.Text == "" || txtMatKhau.Text == "")
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
+        }
+
+      
+
+        private void btnThoat_Click_1(object sender, EventArgs e)
         {
             string message = "Bạn có muốn thoát?";
             string title = "Thông báo";
@@ -36,29 +56,19 @@ namespace QuanLyChiTieu
             {; }
         }
 
-        private void linklblDangKy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linklblDangKy_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //this.Close();
             frmDangKy dk = new frmDangKy();
-         //   dk.ShowDialog();
+            //   dk.ShowDialog();
             dk.Show();
         }
 
-        protected bool IsEmptyInput()
-        {
-            if (txtDangNhap.Text == "" || txtMatKhau.Text == "")
-            {
-                return true;
-            }
-            else
-                return false;
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
+        private void btnOk_Click_1(object sender, EventArgs e)
         {
             try
             {
-                if(!IsEmptyInput())
+                if (!IsEmptyInput())
                 {
                     var user = (from ac in db.tbAccounts
                                 where ac.account_username == txtDangNhap.Text
@@ -70,7 +80,7 @@ namespace QuanLyChiTieu
                         this.Hide();
                         frmTrangChu trangchu = new frmTrangChu();
                         trangchu.Show();
-                        trangchu.Sender(user.account_fullname);
+                        trangchu.Sender(user);
                     }
                     else
                     {
@@ -79,22 +89,14 @@ namespace QuanLyChiTieu
                         txtMatKhau.Text = "";
                     }
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
                 }
 
             }
-            catch(Exception)
+            catch (Exception)
             {; }
-        }
-
-        private void frmDangNhap_Load(object sender, EventArgs e)
-        {
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
         }
     }
 }
