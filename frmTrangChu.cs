@@ -70,5 +70,11 @@ namespace QuanLyChiTieu
             else
             {; }
         }
+
+        private void trongThángToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongKe thongke = new frmThongKe();
+            nhung(thongke);
+        }
     }
 }

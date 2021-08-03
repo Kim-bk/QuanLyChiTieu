@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,12 +54,6 @@
       <DependentUpon>dbcsdl.dbml</DependentUpon>
     </Compile>
     <Compile Include="Common\cls_Encrypt.cs" />
-    <Compile Include="frm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="frm.Designer.cs">
-      <DependentUpon>frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +78,12 @@
     <Compile Include="frmNhapChiTieu.Designer.cs">
       <DependentUpon>frmNhapChiTieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongKe.Designer.cs">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +92,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frm.resx">
-      <DependentUpon>frm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmDangKy.resx">
       <DependentUpon>frmDangKy.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNhapChiTieu.resx">
       <DependentUpon>frmNhapChiTieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongKe.resx">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTrangChu.resx">
       <DependentUpon>frmTrangChu.cs</DependentUpon>
