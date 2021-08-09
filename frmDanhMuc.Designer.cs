@@ -39,6 +39,7 @@ namespace QuanLyChiTieu
             this.btnSearch = new System.Windows.Forms.Button();
             this.grvListDanhMuc = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSua = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvListDanhMuc)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +53,7 @@ namespace QuanLyChiTieu
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.btnDel);
@@ -75,10 +77,10 @@ namespace QuanLyChiTieu
             // 
             this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnThem.Location = new System.Drawing.Point(512, 130);
+            this.btnThem.Location = new System.Drawing.Point(438, 130);
             this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(192, 60);
+            this.btnThem.Size = new System.Drawing.Size(156, 60);
             this.btnThem.TabIndex = 11;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
@@ -101,10 +103,10 @@ namespace QuanLyChiTieu
             // 
             this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.Location = new System.Drawing.Point(724, 130);
+            this.btnSearch.Location = new System.Drawing.Point(616, 130);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(192, 60);
+            this.btnSearch.Size = new System.Drawing.Size(160, 60);
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -134,6 +136,18 @@ namespace QuanLyChiTieu
             this.label1.TabIndex = 0;
             this.label1.Text = "DANH MỤC";
             // 
+            // btnSua
+            // 
+            this.btnSua.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnSua.Location = new System.Drawing.Point(794, 130);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(146, 60);
+            this.btnSua.TabIndex = 12;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            // 
             // frmDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -162,5 +176,6 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnSua;
     }
 }

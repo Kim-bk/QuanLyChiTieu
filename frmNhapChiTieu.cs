@@ -13,6 +13,8 @@ namespace QuanLyChiTieu
         private static int _idUser;
         public delegate void SendUser(tbAccount user);
         public SendUser Sender;
+        private static int id_ChiTieu;
+
         public frmNhapChiTieu()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace QuanLyChiTieu
         {
             txtDienGiai.Text = "";
             txtChi.Text = "";
+            loaddata();
         }
        
         protected void loadLichSu()
@@ -47,18 +50,19 @@ namespace QuanLyChiTieu
                        join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
                        join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                        where ls.account_id == _idUser
-                       orderby ls.created_date ascending
+                       orderby ls.created_date descending
                        select new
                        {
-                           //ngaytao = Convert.ToDateTime(ls.created_date).ToString('dd/MM/yyyy'),
+                           ls.chitieu_id,
                            ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                            dg.diengiai_name,
-                           ls.total_cost,
+                           dg.diengiai_price,
                        };
             grvLichSu.DataSource = data;
-            grvLichSu.Columns[0].HeaderText = "Ngày tạo";
-            grvLichSu.Columns[1].HeaderText = "Diễn giải";
-            grvLichSu.Columns[2].HeaderText = "Chi phí";
+            grvLichSu.Columns[0].Visible = false;
+            grvLichSu.Columns[1].HeaderText = "Ngày tạo";
+            grvLichSu.Columns[2].HeaderText = "Diễn giải";
+            grvLichSu.Columns[3].HeaderText = "Chi phí";
 
         }
 
@@ -96,9 +100,10 @@ namespace QuanLyChiTieu
                     db.tbChiTieuChiTiets.InsertOnSubmit(chitieuct);
                     db.SubmitChanges();
                 
-                    MessageBox.Show("Thêm chi tiêu thành công!");
+                 
                     Reset();
                     loadLichSu();
+                    MessageBox.Show("Thêm chi tiêu thành công!");
                 }
                 catch(Exception)
                 {
@@ -113,6 +118,130 @@ namespace QuanLyChiTieu
         {
             loaddata();
             loadLichSu();
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string message = "Bạn có muốn xóa chi tiêu này?";
+                string title = "Xóa";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                int id_DienGiai = 0;
+                if (result == DialogResult.Yes)
+                {
+                    //delete chitieuchitiet first
+                    var chitieuchitiet = (from ctct in db.tbChiTieuChiTiets
+                                          where ctct.chitieu_id == id_ChiTieu
+                                          select ctct).FirstOrDefault();
+                    id_DienGiai = Convert.ToInt32(chitieuchitiet.diengiai_id);
+                    db.tbChiTieuChiTiets.DeleteOnSubmit(chitieuchitiet);
+                    db.SubmitChanges();
+
+                    //then delete chitieu
+                    var chitieu = (from ct in db.tbChiTieus where ct.chitieu_id == id_ChiTieu select ct).FirstOrDefault();
+                    db.tbChiTieus.DeleteOnSubmit(chitieu);
+                    db.SubmitChanges();
+
+                    //finally delete diengiai
+                    var diengiai = (from dg in db.tbDienGiais where dg.diengiai_id == id_DienGiai select dg).FirstOrDefault();
+                    db.tbDienGiais.DeleteOnSubmit(diengiai);
+                    db.SubmitChanges();
+                    MessageBox.Show("Xóa thành công!");
+                    btnXoa.Enabled = false;
+                    btnSua.Enabled = false;
+                    btnThem.Enabled = true;
+                    Reset();
+                    loadLichSu();
+
+                }
+                else {; }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Lỗi!");
+            }
+             
+
+        }
+
+        private void grvLichSu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                id_ChiTieu = Convert.ToInt32(grvLichSu.CurrentRow.Cells[0].Value);
+
+                var getData = (from dg in db.tbDienGiais
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                               join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                               where ct.chitieu_id == id_ChiTieu
+                               select new
+                               {
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+                                   ct.created_date,
+                                   dm.danhmuc_name,
+                               }).FirstOrDefault();
+
+                //load dữ liệu lên
+                txtDienGiai.Text = getData.diengiai_name;
+                txtChi.Text = getData.diengiai_price.ToString();
+                cbbDanhMuc.Text = getData.danhmuc_name;
+                dtepickerNgayNhap.Value = Convert.ToDateTime(getData.created_date);
+
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                btnThem.Enabled = false;
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Lỗi!");
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            string message = "Bạn có muốn cập nhật chi tiêu này?";
+            string title = "Cạp nhật";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            int id_DienGiai = 0;
+
+            if (result == DialogResult.Yes)
+            {
+                //find chitieuchitiet 
+                var chitieuchitiet = (from ctct in db.tbChiTieuChiTiets
+                                      where ctct.chitieu_id == id_ChiTieu
+                                      select ctct).FirstOrDefault();
+                //find chitieu
+                var chitieu = (from ct in db.tbChiTieus where ct.chitieu_id == id_ChiTieu select ct).FirstOrDefault();
+
+                //find diengiai
+                var diengiai = (from dg in db.tbDienGiais where dg.diengiai_id == chitieuchitiet.diengiai_id select dg).FirstOrDefault();
+
+                // lấy đc id danh mục
+                var getIdCbb = db.tbDanhMucs.Where(x => x.danhmuc_name == cbbDanhMuc.Text).First().danhmuc_id;
+
+                //update all
+                diengiai.danhmuc_id = getIdCbb;
+                chitieu.created_date = Convert.ToDateTime(dtepickerNgayNhap.Value);
+                diengiai.diengiai_name = txtDienGiai.Text;
+                diengiai.diengiai_price = Convert.ToInt32(txtChi.Text);
+                db.SubmitChanges();
+
+                MessageBox.Show("Cập nhật thành công!");
+                btnXoa.Enabled = false;
+                btnSua.Enabled = false;
+                btnThem.Enabled = true;
+                Reset();
+                loadLichSu();
+
+            }
+            else {; }
         }
     }
 }

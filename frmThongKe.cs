@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,13 @@ namespace QuanLyChiTieu
     public partial class frmThongKe : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
+        CultureInfo culture = new CultureInfo("vi-VN");
         public frmThongKe()
         {
             InitializeComponent();
             loadData();
+            lblThongKe.Text += " THÁNG " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+            txtTong.Enabled = false;
         }
 
         public void loadData()
@@ -40,12 +44,18 @@ namespace QuanLyChiTieu
 
                        };
 
-        
             grvThongKe.DataSource = data;
             grvThongKe.Columns[0].Visible = false;
             grvThongKe.Columns[1].HeaderText = "Tên danh mục";
             grvThongKe.Columns[2].HeaderText = "Đã chi";
 
+            int sum = 0;
+            for(int  i = 0; i < grvThongKe.Rows.Count; i++)
+            {
+                sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
+            }
+            txtTong.Text = sum.ToString("c", culture);
+      
         }
 
     }

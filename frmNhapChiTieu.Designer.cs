@@ -31,6 +31,8 @@ namespace QuanLyChiTieu
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhapChiTieu));
             this.pnlNhapChiTieu = new System.Windows.Forms.Panel();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
             this.cbbDanhMuc = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
@@ -53,6 +55,8 @@ namespace QuanLyChiTieu
             // pnlNhapChiTieu
             // 
             this.pnlNhapChiTieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnlNhapChiTieu.Controls.Add(this.btnXoa);
+            this.pnlNhapChiTieu.Controls.Add(this.btnSua);
             this.pnlNhapChiTieu.Controls.Add(this.cbbDanhMuc);
             this.pnlNhapChiTieu.Controls.Add(this.label5);
             this.pnlNhapChiTieu.Controls.Add(this.btnThem);
@@ -69,6 +73,30 @@ namespace QuanLyChiTieu
             this.pnlNhapChiTieu.Size = new System.Drawing.Size(796, 860);
             this.pnlNhapChiTieu.TabIndex = 10;
             // 
+            // btnXoa
+            // 
+            this.btnXoa.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnXoa.Location = new System.Drawing.Point(467, 569);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(180, 50);
+            this.btnXoa.TabIndex = 11;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnSua.Location = new System.Drawing.Point(252, 569);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(180, 50);
+            this.btnSua.TabIndex = 10;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
             // cbbDanhMuc
             // 
             this.cbbDanhMuc.Font = new System.Drawing.Font("Times New Roman", 14F);
@@ -77,7 +105,7 @@ namespace QuanLyChiTieu
             this.cbbDanhMuc.Location = new System.Drawing.Point(227, 269);
             this.cbbDanhMuc.Name = "cbbDanhMuc";
             this.cbbDanhMuc.Size = new System.Drawing.Size(420, 41);
-            this.cbbDanhMuc.TabIndex = 9;
+            this.cbbDanhMuc.TabIndex = 12;
             this.cbbDanhMuc.Text = "Chọn danh mục";
             // 
             // label5
@@ -94,7 +122,7 @@ namespace QuanLyChiTieu
             // 
             this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnThem.Location = new System.Drawing.Point(227, 539);
+            this.btnThem.Location = new System.Drawing.Point(41, 569);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(180, 50);
             this.btnThem.TabIndex = 7;
@@ -207,6 +235,7 @@ namespace QuanLyChiTieu
             this.grvLichSu.RowTemplate.Height = 28;
             this.grvLichSu.Size = new System.Drawing.Size(731, 620);
             this.grvLichSu.TabIndex = 11;
+            this.grvLichSu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvLichSu_CellDoubleClick);
             // 
             // label6
             // 
@@ -257,5 +286,7 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView grvLichSu;
         private System.Windows.Forms.ComboBox cbbOptions;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnXoa;
     }
 }

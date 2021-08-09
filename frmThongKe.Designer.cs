@@ -34,24 +34,24 @@ namespace QuanLyChiTieu
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThongKe));
             this.pnlThongKe = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTong = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlBieuDo = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cThongKe = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.lblThongKe = new System.Windows.Forms.Label();
             this.pnlThongKe.SuspendLayout();
             this.pnlBieuDo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlThongKe
             // 
             this.pnlThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pnlThongKe.Controls.Add(this.textBox1);
+            this.pnlThongKe.Controls.Add(this.txtTong);
             this.pnlThongKe.Controls.Add(this.label2);
             this.pnlThongKe.Controls.Add(this.pnlBieuDo);
             this.pnlThongKe.Controls.Add(this.comboBox1);
@@ -62,13 +62,16 @@ namespace QuanLyChiTieu
             this.pnlThongKe.Size = new System.Drawing.Size(1872, 948);
             this.pnlThongKe.TabIndex = 0;
             // 
-            // textBox1
+            // txtTong
             // 
-            this.textBox1.Location = new System.Drawing.Point(620, 869);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 42);
-            this.textBox1.TabIndex = 6;
+            this.txtTong.BackColor = System.Drawing.Color.White;
+            this.txtTong.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.txtTong.ForeColor = System.Drawing.Color.Black;
+            this.txtTong.Location = new System.Drawing.Point(620, 869);
+            this.txtTong.Multiline = true;
+            this.txtTong.Name = "txtTong";
+            this.txtTong.Size = new System.Drawing.Size(247, 42);
+            this.txtTong.TabIndex = 6;
             // 
             // label2
             // 
@@ -83,28 +86,29 @@ namespace QuanLyChiTieu
             // pnlBieuDo
             // 
             this.pnlBieuDo.BackColor = System.Drawing.Color.White;
-            this.pnlBieuDo.Controls.Add(this.chart1);
+            this.pnlBieuDo.Controls.Add(this.cThongKe);
             this.pnlBieuDo.Controls.Add(this.label1);
             this.pnlBieuDo.Location = new System.Drawing.Point(1000, 192);
             this.pnlBieuDo.Name = "pnlBieuDo";
             this.pnlBieuDo.Size = new System.Drawing.Size(838, 638);
             this.pnlBieuDo.TabIndex = 4;
             // 
-            // chart1
+            // cThongKe
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.cThongKe.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(103, 83);
-            this.chart1.Name = "chart1";
+            this.cThongKe.Legends.Add(legend1);
+            this.cThongKe.Location = new System.Drawing.Point(103, 83);
+            this.cThongKe.Name = "cThongKe";
+            this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(579, 469);
-            this.chart1.TabIndex = 1;
-            this.chart1.Text = "chart1";
+            this.cThongKe.Series.Add(series1);
+            this.cThongKe.Size = new System.Drawing.Size(579, 469);
+            this.cThongKe.TabIndex = 1;
+            this.cThongKe.Text = "chart1";
             // 
             // label1
             // 
@@ -142,7 +146,7 @@ namespace QuanLyChiTieu
             // 
             this.lblThongKe.AutoSize = true;
             this.lblThongKe.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold);
-            this.lblThongKe.Location = new System.Drawing.Point(723, 56);
+            this.lblThongKe.Location = new System.Drawing.Point(559, 25);
             this.lblThongKe.Name = "lblThongKe";
             this.lblThongKe.Size = new System.Drawing.Size(425, 81);
             this.lblThongKe.TabIndex = 1;
@@ -163,7 +167,7 @@ namespace QuanLyChiTieu
             this.pnlThongKe.PerformLayout();
             this.pnlBieuDo.ResumeLayout(false);
             this.pnlBieuDo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).EndInit();
             this.ResumeLayout(false);
 
@@ -175,10 +179,10 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.Label lblThongKe;
         private System.Windows.Forms.DataGridView grvThongKe;
         private System.Windows.Forms.Panel pnlBieuDo;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart cThongKe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTong;
         private System.Windows.Forms.Label label2;
     }
 }
