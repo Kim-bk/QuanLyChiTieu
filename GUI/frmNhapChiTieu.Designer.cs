@@ -223,6 +223,7 @@ namespace QuanLyChiTieu
             this.cbbOptions.Size = new System.Drawing.Size(247, 41);
             this.cbbOptions.TabIndex = 12;
             this.cbbOptions.Text = "Tất cả";
+            this.cbbOptions.SelectedIndexChanged += new System.EventHandler(this.cbbOptions_SelectedIndexChanged);
             // 
             // grvLichSu
             // 

@@ -80,6 +80,7 @@ namespace QuanLyChiTieu
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDoiMatKhau doimatkhau = new frmDoiMatKhau();
+            doimatkhau.Sender(_user);
             nhung(doimatkhau);
         }
     }

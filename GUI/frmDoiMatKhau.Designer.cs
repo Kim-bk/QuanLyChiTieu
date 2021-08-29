@@ -105,6 +105,7 @@ namespace QuanLyChiTieu.GUI
             this.txtRePass.Location = new System.Drawing.Point(424, 444);
             this.txtRePass.Multiline = true;
             this.txtRePass.Name = "txtRePass";
+            this.txtRePass.PasswordChar = '*';
             this.txtRePass.Size = new System.Drawing.Size(342, 33);
             this.txtRePass.TabIndex = 6;
             // 
@@ -114,6 +115,7 @@ namespace QuanLyChiTieu.GUI
             this.txtNewPass.Location = new System.Drawing.Point(424, 337);
             this.txtNewPass.Multiline = true;
             this.txtNewPass.Name = "txtNewPass";
+            this.txtNewPass.PasswordChar = '*';
             this.txtNewPass.Size = new System.Drawing.Size(342, 33);
             this.txtNewPass.TabIndex = 7;
             // 
@@ -123,6 +125,7 @@ namespace QuanLyChiTieu.GUI
             this.txtOldPass.Location = new System.Drawing.Point(424, 234);
             this.txtOldPass.Multiline = true;
             this.txtOldPass.Name = "txtOldPass";
+            this.txtOldPass.PasswordChar = '*';
             this.txtOldPass.Size = new System.Drawing.Size(342, 33);
             this.txtOldPass.TabIndex = 8;
             // 
@@ -137,6 +140,7 @@ namespace QuanLyChiTieu.GUI
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmDoiMatKhau
             // 

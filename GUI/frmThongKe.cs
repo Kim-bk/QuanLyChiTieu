@@ -15,16 +15,32 @@ namespace QuanLyChiTieu
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
         CultureInfo culture = new CultureInfo("vi-VN");
+
+        int current_month = DateTime.Now.Month;
         public frmThongKe()
         {
             InitializeComponent();
             loadData();
+            LoadCombobox();
             lblThongKe.Text += " THÁNG " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
-            txtTong.Enabled = false;
+         
         }
+
+        public void LoadCombobox()
+        {
+            cbbMonth.Items.Insert(0, "Tất cả");
+            for (int i = 1; i <= current_month; i++)
+            {
+                string text = "Tháng " + i.ToString();
+                cbbMonth.Items.Add(text);
+            }
+        }
+
 
         public void loadData()
         {
+        
+
             var data = from dm in db.tbDanhMucs
                        group dm by dm.danhmuc_id into item
                        select new
@@ -57,23 +73,12 @@ namespace QuanLyChiTieu
             {
                 sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
             }
-            txtTong.Text = sum.ToString("c", culture);
+            label3.Text = sum.ToString("c", culture);
       
         }
 
 
-        private void fillChart()
-        {
-            //AddXY value in chart1 in series named as Salary  
-            cThongKe.Series["Chi Tiêu"].Points.AddXY("Ajay", "10000");
-            cThongKe.Series["Chi Tiêu"].Points.AddXY("Ramesh", "8000");
-            cThongKe.Series["Chi Tiêu"].Points.AddXY("Ankit", "7000");
-            cThongKe.Series["Chi Tiêu"].Points.AddXY("Gurmeet", "10000");
-            cThongKe.Series["Chi Tiêu"].Points.AddXY("Suresh", "8500");
-            //chart title  
-            cThongKe.Titles.Add("Thống kê");
-        }
-
+    
         private void frmThongKe_Load(object sender, EventArgs e)
         {
             //fillChart();

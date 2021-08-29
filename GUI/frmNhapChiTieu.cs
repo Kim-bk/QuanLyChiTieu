@@ -14,6 +14,11 @@ namespace QuanLyChiTieu
         public SendUser Sender;
         private static int id_ChiTieu;
 
+        //t2 trong tuần hiện tại
+        DateTime monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+        //t7 trong tuần hiện tại
+        DateTime saturday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Saturday);
+
         public frmNhapChiTieu()
         {
             InitializeComponent();
@@ -44,28 +49,6 @@ namespace QuanLyChiTieu
             loaddata();
         }
        
-        protected void loadLichSu()
-        {
-            var data = from ls in db.tbChiTieus
-                       join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
-                       join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                       where ls.account_id == _idUser
-                       orderby ls.created_date descending
-                       select new
-                       {
-                           ls.chitieu_id,
-                           ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                           dg.diengiai_name,
-                           dg.diengiai_price,
-
-                       };
-            grvLichSu.DataSource = data;
-            grvLichSu.Columns[0].Visible = false;
-            grvLichSu.Columns[1].HeaderText = "Ngày tạo";
-            grvLichSu.Columns[2].HeaderText = "Diễn giải";
-            grvLichSu.Columns[3].HeaderText = "Chi phí";
-        }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             if(txtChi.Text == "" || txtDienGiai.Text == "")
@@ -247,5 +230,97 @@ namespace QuanLyChiTieu
             }
             else {; }
         }
+
+        private void cbbOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string options = cbbOptions.SelectedItem.ToString();
+            loadLichSu(options);
+        }
+        protected void loadLichSu(string options ="")
+        {
+            if(options == "Trong ngày")
+            {
+                var data = from ls in db.tbChiTieus
+                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                           where ls.account_id == _idUser
+                           && ls.created_date.Value.Date == DateTime.Now
+                           orderby ls.created_date descending
+                           select new
+                           {
+                               ls.chitieu_id,
+                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                               dg.diengiai_name,
+                               dg.diengiai_price,
+
+                           };
+
+                grvLichSu.DataSource = data;
+            }   
+            else if(options == "Trong tháng")
+            {
+                var data = from ls in db.tbChiTieus
+                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                           where ls.account_id == _idUser
+                           && ls.created_date.Value.Month == DateTime.Now.Month
+                           && ls.created_date.Value.Year == DateTime.Now.Year
+                           orderby ls.created_date descending
+                           select new
+                           {
+                               ls.chitieu_id,
+                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                               dg.diengiai_name,
+                               dg.diengiai_price,
+
+                           };
+
+                grvLichSu.DataSource = data;
+            }
+            else if(options == "Trong tuần")
+            {
+                var data = from ls in db.tbChiTieus
+                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                           where ls.account_id == _idUser
+                           && ls.created_date >= monday
+                           && ls.created_date <= saturday
+                           orderby ls.created_date descending
+                           select new
+                           {
+                               ls.chitieu_id,
+                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                               dg.diengiai_name,
+                               dg.diengiai_price,
+
+                           };
+
+                grvLichSu.DataSource = data;
+            }    
+            else
+            {
+                var data = from ls in db.tbChiTieus
+                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                           where ls.account_id == _idUser
+                           orderby ls.created_date descending
+                           select new
+                           {
+                               ls.chitieu_id,
+                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                               dg.diengiai_name,
+                               dg.diengiai_price,
+
+                           };
+
+                grvLichSu.DataSource = data;
+            }
+       
+            grvLichSu.Columns[0].Visible = false;
+            grvLichSu.Columns[1].HeaderText = "Ngày tạo";
+            grvLichSu.Columns[2].HeaderText = "Diễn giải";
+            grvLichSu.Columns[3].HeaderText = "Chi phí";
+        }
+
     }
 }
