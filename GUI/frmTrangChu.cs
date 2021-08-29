@@ -76,5 +76,11 @@ namespace QuanLyChiTieu
             frmThongKe thongke = new frmThongKe();
             nhung(thongke);
         }
+
+        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDoiMatKhau doimatkhau = new frmDoiMatKhau();
+            nhung(doimatkhau);
+        }
     }
 }
