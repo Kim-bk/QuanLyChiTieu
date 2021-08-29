@@ -1,0 +1,83 @@
+[33mcommit 02984ae0c653b285863ff1da89ae4ad153381277[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Aug 9 11:28:41 2021 +0700
+
+    eleventh commit: add module sửa, xóa chi tiêu
+
+[33mcommit 899d8f3afcbf6f3921727020239523c396d8788c[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Tue Aug 3 19:24:04 2021 +0700
+
+    tenth commit: up code thong ke theo thang, fix tiep
+
+[33mcommit 5b3ed5d809c638a13d4344dd7bebfb261aeef011[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Tue Aug 3 16:10:12 2021 +0700
+
+    nineth commit: up module thong ke
+
+[33mcommit bf49f4d0c7d77cab6aca85a2cdcc278649315bf2[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Tue Aug 3 12:59:37 2021 +0700
+
+    eight commit: fix trang chu, dang nhap, dang ky, chi tieu
+
+[33mcommit f37900acfc30f42e89aa0797b9ce607e21ae72eb[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Tue Aug 3 00:50:20 2021 +0700
+
+    kim
+
+[33mcommit 65fa27e229149bc1561be78ba5e5d3896f0e493e[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Tue Aug 3 00:42:07 2021 +0700
+
+    seventh commit: finish dang nhap, dang ky, fix trang chu
+
+[33mcommit 9d31f290b5c1f767c1002e69b76182cafce484fa[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Aug 2 19:19:32 2021 +0700
+
+    sixth commit: module dang ky
+
+[33mcommit af6c596e4eb371bf50b74bd7723a91abbf359681[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Aug 2 11:29:02 2021 +0700
+
+    fifth commits: module nhap chi tieu
+
+[33mcommit 49b1954b0ed4d99a6499ecde111233ba9bdd0b08[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Fri Jul 30 18:18:51 2021 +0700
+
+    fourth commit: finish module danh muc
+
+[33mcommit 96b73367bba24adc87f105dc67d7fe9d53e00909[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Fri Jul 30 17:57:54 2021 +0700
+
+    kim
+
+[33mcommit ed219af2f8a0c30f6ff319b4017ee043535670e1[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Wed Jul 14 00:11:56 2021 +0700
+
+    add form Trang Chu
+
+[33mcommit eda8b592673133c64c5fd7f26181e0b938a6e784[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Jul 12 11:39:49 2021 +0700
+
+    second commit
+
+[33mcommit ad3881e55c5d0756680540c26985d95dac33ade6[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Jul 12 11:39:26 2021 +0700
+
+    add gitignore
+
+[33mcommit 508e09dd08d1635d76e11a4ac76a56f1b2f78e1c[m
+Author: Kim-bk <nguyenhoangkim120201@gmail.com>
+Date:   Mon Jul 12 11:32:41 2021 +0700
+
+    first commit
