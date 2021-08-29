@@ -48,66 +48,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\dbcsdl.designer.cs">
+    <Compile Include="Common\cls_Encrypt.cs" />
+    <Compile Include="dbcsdl.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbcsdl.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Common\cls_Encrypt.cs" />
-    <Compile Include="frmDangKy.cs">
+    <Compile Include="GUI\frmDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDangKy.Designer.cs">
+    <Compile Include="GUI\frmDangKy.Designer.cs">
       <DependentUpon>frmDangKy.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDangNhap.cs">
+    <Compile Include="GUI\frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDangNhap.Designer.cs">
+    <Compile Include="GUI\frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhMuc.cs">
+    <Compile Include="GUI\frmDanhMuc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDanhMuc.Designer.cs">
+    <Compile Include="GUI\frmDanhMuc.Designer.cs">
       <DependentUpon>frmDanhMuc.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNhapChiTieu.cs">
+    <Compile Include="GUI\frmNhapChiTieu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNhapChiTieu.Designer.cs">
+    <Compile Include="GUI\frmNhapChiTieu.Designer.cs">
       <DependentUpon>frmNhapChiTieu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmThongKe.cs">
+    <Compile Include="GUI\frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmThongKe.Designer.cs">
+    <Compile Include="GUI\frmThongKe.Designer.cs">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTrangChu.cs">
+    <Compile Include="GUI\frmTrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTrangChu.Designer.cs">
+    <Compile Include="GUI\frmTrangChu.Designer.cs">
       <DependentUpon>frmTrangChu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmDangKy.resx">
+    <EmbeddedResource Include="GUI\frmDangKy.resx">
       <DependentUpon>frmDangKy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDangNhap.resx">
+    <EmbeddedResource Include="GUI\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDanhMuc.resx">
+    <EmbeddedResource Include="GUI\frmDanhMuc.resx">
       <DependentUpon>frmDanhMuc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNhapChiTieu.resx">
+    <EmbeddedResource Include="GUI\frmNhapChiTieu.resx">
       <DependentUpon>frmNhapChiTieu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmThongKe.resx">
+    <EmbeddedResource Include="GUI\frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTrangChu.resx">
+    <EmbeddedResource Include="GUI\frmTrangChu.resx">
       <DependentUpon>frmTrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -119,12 +119,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="App_Data\dbcsdl.dbml">
+    <None Include="dbcsdl.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dbcsdl.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="App_Data\dbcsdl.dbml.layout">
+    <None Include="dbcsdl.dbml.layout">
       <DependentUpon>dbcsdl.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">

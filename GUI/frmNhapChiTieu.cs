@@ -3,7 +3,6 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using QuanLyChiTieu.App_Data;
 
 namespace QuanLyChiTieu
 {
@@ -28,11 +27,12 @@ namespace QuanLyChiTieu
 
         protected void loaddata()
         {
-            var data = from dm in db.tbDanhMucs 
-                select new 
-                {
-                    dm.danhmuc_name,
-                };
+
+            var data = from dm in db.tbDanhMucs
+                       select new
+                       {
+                           dm.danhmuc_name,
+                       };
             cbbDanhMuc.DataSource = data;
             cbbDanhMuc.DisplayMember = "danhmuc_name";
         }
@@ -57,13 +57,13 @@ namespace QuanLyChiTieu
                            ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                            dg.diengiai_name,
                            dg.diengiai_price,
+
                        };
             grvLichSu.DataSource = data;
             grvLichSu.Columns[0].Visible = false;
             grvLichSu.Columns[1].HeaderText = "Ngày tạo";
             grvLichSu.Columns[2].HeaderText = "Diễn giải";
             grvLichSu.Columns[3].HeaderText = "Chi phí";
-
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -213,6 +213,10 @@ namespace QuanLyChiTieu
 
             if (result == DialogResult.Yes)
             {
+                tbChiTieu new_ct = new tbChiTieu();
+
+
+
                 //find chitieuchitiet 
                 var chitieuchitiet = (from ctct in db.tbChiTieuChiTiets
                                       where ctct.chitieu_id == id_ChiTieu

@@ -29,6 +29,7 @@ namespace QuanLyChiTieu
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -42,15 +43,19 @@ namespace QuanLyChiTieu
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.lblThongKe = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlThongKe.SuspendLayout();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlThongKe
             // 
             this.pnlThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnlThongKe.Controls.Add(this.txtSearch);
             this.pnlThongKe.Controls.Add(this.txtTong);
             this.pnlThongKe.Controls.Add(this.label2);
             this.pnlThongKe.Controls.Add(this.pnlBieuDo);
@@ -77,11 +82,11 @@ namespace QuanLyChiTieu
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.label2.Location = new System.Drawing.Point(540, 878);
+            this.label2.Location = new System.Drawing.Point(493, 872);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 33);
+            this.label2.Size = new System.Drawing.Size(121, 33);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Tổng:";
+            this.label2.Text = "Tổng chi:";
             // 
             // pnlBieuDo
             // 
@@ -99,26 +104,27 @@ namespace QuanLyChiTieu
             this.cThongKe.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.cThongKe.Legends.Add(legend1);
-            this.cThongKe.Location = new System.Drawing.Point(103, 83);
+            this.cThongKe.Location = new System.Drawing.Point(56, 72);
             this.cThongKe.Name = "cThongKe";
             this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Chi Tiêu";
             this.cThongKe.Series.Add(series1);
-            this.cThongKe.Size = new System.Drawing.Size(579, 469);
+            this.cThongKe.Size = new System.Drawing.Size(752, 519);
             this.cThongKe.TabIndex = 1;
-            this.cThongKe.Text = "chart1";
+            this.cThongKe.Text = "Chi tiêu";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20F);
-            this.label1.Location = new System.Drawing.Point(310, 23);
+            this.label1.Location = new System.Drawing.Point(239, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 46);
+            this.label1.Size = new System.Drawing.Size(320, 46);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Biểu đồ";
+            this.label1.Text = "Thống Kê Biểu Đồ";
             // 
             // comboBox1
             // 
@@ -152,6 +158,16 @@ namespace QuanLyChiTieu
             this.lblThongKe.TabIndex = 1;
             this.lblThongKe.Text = "THỐNG KÊ";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(394, 116);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(473, 40);
+            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // frmThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -163,12 +179,14 @@ namespace QuanLyChiTieu
             this.DoubleBuffered = true;
             this.Name = "frmThongKe";
             this.Text = "frmThongKe";
+            this.Load += new System.EventHandler(this.frmThongKe_Load);
             this.pnlThongKe.ResumeLayout(false);
             this.pnlThongKe.PerformLayout();
             this.pnlBieuDo.ResumeLayout(false);
             this.pnlBieuDo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -184,5 +202,7 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtTong;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

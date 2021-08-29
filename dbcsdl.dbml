@@ -12,12 +12,14 @@
       <Association Name="tbAccount_tbChiTieu" Member="tbChiTieus" ThisKey="account_id" OtherKey="account_id" Type="tbChiTieu" />
     </Type>
   </Table>
-  <Table Name="dbo.tbThongKe" Member="tbThongKes">
-    <Type Name="tbThongKe">
-      <Column Name="thongke_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="thongke_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbChiTieuChiTiet" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbChiTieuChiTiet" IsForeignKey="true" />
+  <Table Name="dbo.tbDienGiai" Member="tbDienGiais">
+    <Type Name="tbDienGiai">
+      <Column Name="diengiai_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="diengiai_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="danhmuc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="diengiai_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbChiTieuChiTiet" />
+      <Association Name="tbDanhMuc_tbDienGiai" Member="tbDanhMuc" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDanhMuc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbChiTieu" Member="tbChiTieus">
@@ -49,14 +51,12 @@
       <Association Name="tbDanhMuc_tbDienGiai" Member="tbDienGiais" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDienGiai" />
     </Type>
   </Table>
-  <Table Name="dbo.tbDienGiai" Member="tbDienGiais">
-    <Type Name="tbDienGiai">
-      <Column Name="diengiai_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="diengiai_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="danhmuc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="diengiai_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbChiTieuChiTiet" />
-      <Association Name="tbDanhMuc_tbDienGiai" Member="tbDanhMuc" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDanhMuc" IsForeignKey="true" />
+  <Table Name="dbo.tbThongKe" Member="tbThongKes">
+    <Type Name="tbThongKe">
+      <Column Name="thongke_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="thongke_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbChiTieuChiTiet" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbChiTieuChiTiet" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
