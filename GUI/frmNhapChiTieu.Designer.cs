@@ -47,6 +47,8 @@ namespace QuanLyChiTieu
             this.cbbOptions = new System.Windows.Forms.ComboBox();
             this.grvLichSu = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblPaid = new System.Windows.Forms.Label();
             this.pnlNhapChiTieu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvLichSu)).BeginInit();
@@ -77,7 +79,7 @@ namespace QuanLyChiTieu
             // 
             this.btnXoa.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnXoa.Location = new System.Drawing.Point(467, 569);
+            this.btnXoa.Location = new System.Drawing.Point(467, 606);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(180, 50);
             this.btnXoa.TabIndex = 11;
@@ -89,7 +91,7 @@ namespace QuanLyChiTieu
             // 
             this.btnSua.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSua.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnSua.Location = new System.Drawing.Point(252, 569);
+            this.btnSua.Location = new System.Drawing.Point(260, 606);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(180, 50);
             this.btnSua.TabIndex = 10;
@@ -122,7 +124,7 @@ namespace QuanLyChiTieu
             // 
             this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnThem.Location = new System.Drawing.Point(41, 569);
+            this.btnThem.Location = new System.Drawing.Point(41, 606);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(180, 50);
             this.btnThem.TabIndex = 7;
@@ -201,10 +203,12 @@ namespace QuanLyChiTieu
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.lblPaid);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.cbbOptions);
             this.panel1.Controls.Add(this.grvLichSu);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(1083, 39);
+            this.panel1.Location = new System.Drawing.Point(1043, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 860);
             this.panel1.TabIndex = 11;
@@ -220,7 +224,7 @@ namespace QuanLyChiTieu
             "Trong tháng"});
             this.cbbOptions.Location = new System.Drawing.Point(27, 133);
             this.cbbOptions.Name = "cbbOptions";
-            this.cbbOptions.Size = new System.Drawing.Size(247, 41);
+            this.cbbOptions.Size = new System.Drawing.Size(149, 41);
             this.cbbOptions.TabIndex = 12;
             this.cbbOptions.Text = "Tất cả";
             this.cbbOptions.SelectedIndexChanged += new System.EventHandler(this.cbbOptions_SelectedIndexChanged);
@@ -234,7 +238,7 @@ namespace QuanLyChiTieu
             this.grvLichSu.Name = "grvLichSu";
             this.grvLichSu.RowHeadersWidth = 62;
             this.grvLichSu.RowTemplate.Height = 28;
-            this.grvLichSu.Size = new System.Drawing.Size(731, 620);
+            this.grvLichSu.Size = new System.Drawing.Size(731, 488);
             this.grvLichSu.TabIndex = 11;
             this.grvLichSu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvLichSu_CellDoubleClick);
             // 
@@ -247,6 +251,26 @@ namespace QuanLyChiTieu
             this.label6.Size = new System.Drawing.Size(206, 63);
             this.label6.TabIndex = 10;
             this.label6.Text = "Lịch sử";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(398, 716);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 32);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Đã chi:";
+            // 
+            // lblPaid
+            // 
+            this.lblPaid.AutoSize = true;
+            this.lblPaid.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaid.Location = new System.Drawing.Point(505, 716);
+            this.lblPaid.Name = "lblPaid";
+            this.lblPaid.Size = new System.Drawing.Size(43, 32);
+            this.lblPaid.TabIndex = 14;
+            this.lblPaid.Text = "$$";
             // 
             // frmNhapChiTieu
             // 
@@ -289,5 +313,7 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.ComboBox cbbOptions;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPaid;
     }
 }

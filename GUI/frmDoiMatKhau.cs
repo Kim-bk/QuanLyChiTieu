@@ -28,7 +28,7 @@ namespace QuanLyChiTieu.GUI
             _user = user;
         }
 
-        public void ResetText()
+        public void ResetData()
         {
             txtNewPass.Text = "";
             txtOldPass.Text = "";
@@ -39,19 +39,19 @@ namespace QuanLyChiTieu.GUI
             if(txtNewPass.Text == "" || txtOldPass.Text == "" || txtRePass.Text == "")
             {
                 MessageBox.Show("Yêu cầu nhập đầy đủ thông tin!");
-                ResetText();
+                ResetData();
             }
             else
             {
                 if (encrypt.MD5Hash(txtOldPass.Text) != _user.account_password)
                 {
                     MessageBox.Show("Nhập mật khẩu cũ chưa đúng!");
-                    ResetText();
+                    ResetData();
                 }
                 else if(txtRePass.Text != txtNewPass.Text)
                 {
                     MessageBox.Show("Xác nhận mật khẩu chưa chính xác!");
-                    ResetText();
+                    ResetData();
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace QuanLyChiTieu.GUI
                     change.account_password = encrypt.MD5Hash(txtNewPass.Text);
                     db.SubmitChanges();
                     MessageBox.Show("Thay đổi mật khẩu thành công!");
-                    ResetText();
+                    ResetData();
                 }    
             }    
 

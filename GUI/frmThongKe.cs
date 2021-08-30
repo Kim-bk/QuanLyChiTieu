@@ -15,31 +15,33 @@ namespace QuanLyChiTieu
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
         CultureInfo culture = new CultureInfo("vi-VN");
-
+        private static int month;
         int current_month = DateTime.Now.Month;
+
         public frmThongKe()
         {
             InitializeComponent();
-            loadData();
+            loadData(current_month);
             LoadCombobox();
-            lblThongKe.Text += " THÁNG " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
-         
         }
 
         public void LoadCombobox()
         {
-            cbbMonth.Items.Insert(0, "Tất cả");
-            for (int i = 1; i <= current_month; i++)
+            //cbbMonth.Items.Insert(0, "Tất cả");
+            cbbMonth.Text = "Tháng " + current_month.ToString();
+            for (int i = 0; i < current_month; i++)
             {
-                string text = "Tháng " + i.ToString();
-                cbbMonth.Items.Add(text);
+                int j = i + 1;
+                string text = "Tháng " + j.ToString();
+                cbbMonth.Items.Insert(i, text);
             }
         }
 
 
-        public void loadData()
+        public void loadData(int month)
         {
-        
+            lblThongKe.Text = "";
+            int sum = 0;
 
             var data = from dm in db.tbDanhMucs
                        group dm by dm.danhmuc_id into item
@@ -52,7 +54,7 @@ namespace QuanLyChiTieu
                                     join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
                                     join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
                                     where dg.danhmuc_id == item.Key
-                                    && ct.created_date.Value.Month == DateTime.Now.Month
+                                    && ct.created_date.Value.Month == month
                                     && ct.created_date.Value.Year == DateTime.Now.Year
                                     && ct.account_id == 1 // thay bằng user id hiện tại
                                     select dg).Sum(dg => dg.diengiai_price)
@@ -67,14 +69,16 @@ namespace QuanLyChiTieu
             cThongKe.DataSource = data;
             cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
             cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
+            cThongKe.DataBind();
 
-            int sum = 0;
-            for(int  i = 0; i < grvThongKe.Rows.Count; i++)
+            //cThongKe.DataSource = null;
+
+            for (int  i = 0; i < grvThongKe.Rows.Count; i++)
             {
                 sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
             }
             label3.Text = sum.ToString("c", culture);
-      
+            lblThongKe.Text += "THỐNG KÊ THÁNG " + month.ToString() + "/" + DateTime.Now.Year.ToString();
         }
 
 
@@ -98,7 +102,7 @@ namespace QuanLyChiTieu
                                        join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
                                        join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
                                        where dg.danhmuc_id == item.Key
-                                       && ct.created_date.Value.Month == DateTime.Now.Month
+                                       && ct.created_date.Value.Month == month
                                        && ct.created_date.Value.Year == DateTime.Now.Year
                                        && ct.account_id == 1 // thay bằng user id hiện tại
                                        select dg).Sum(dg => dg.diengiai_price)
@@ -109,6 +113,12 @@ namespace QuanLyChiTieu
             grvThongKe.Columns[0].Visible = false;
             grvThongKe.Columns[1].HeaderText = "Tên danh mục";
             grvThongKe.Columns[2].HeaderText = "Đã chi";
+        }
+
+        private void cbbMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            month = (cbbMonth.SelectedIndex + 1);
+            loadData(month);
         }
     }
 }

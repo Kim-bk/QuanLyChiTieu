@@ -13,12 +13,13 @@ namespace QuanLyChiTieu
         public delegate void SendUser(tbAccount user);
         public SendUser Sender;
         private static int id_ChiTieu;
+        private static string options;
 
         //t2 trong tuần hiện tại
         DateTime monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
         //t7 trong tuần hiện tại
         DateTime saturday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Saturday);
-
+        CultureInfo culture = new CultureInfo("vi-VN");
         public frmNhapChiTieu()
         {
             InitializeComponent();
@@ -138,7 +139,7 @@ namespace QuanLyChiTieu
                     btnSua.Enabled = false;
                     btnThem.Enabled = true;
                     Reset();
-                    loadLichSu();
+                    loadLichSu(options);
 
                 }
                 else {; }
@@ -192,7 +193,6 @@ namespace QuanLyChiTieu
             string title = "Cạp nhật";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
-            int id_DienGiai = 0;
 
             if (result == DialogResult.Yes)
             {
@@ -225,7 +225,7 @@ namespace QuanLyChiTieu
                 btnSua.Enabled = false;
                 btnThem.Enabled = true;
                 Reset();
-                loadLichSu();
+                loadLichSu(options);
 
             }
             else {; }
@@ -233,12 +233,13 @@ namespace QuanLyChiTieu
 
         private void cbbOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string options = cbbOptions.SelectedItem.ToString();
+            options = cbbOptions.SelectedItem.ToString();
             loadLichSu(options);
         }
         protected void loadLichSu(string options ="")
         {
-            if(options == "Trong ngày")
+            int money_paid = 0;
+            if (options == "Trong ngày")
             {
                 var data = from ls in db.tbChiTieus
                            join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
@@ -254,7 +255,6 @@ namespace QuanLyChiTieu
                                dg.diengiai_price,
 
                            };
-
                 grvLichSu.DataSource = data;
             }   
             else if(options == "Trong tháng")
@@ -320,6 +320,19 @@ namespace QuanLyChiTieu
             grvLichSu.Columns[1].HeaderText = "Ngày tạo";
             grvLichSu.Columns[2].HeaderText = "Diễn giải";
             grvLichSu.Columns[3].HeaderText = "Chi phí";
+
+            try
+            {
+                for (int r = 0; r < grvLichSu.RowCount; r++)
+                {
+                    money_paid += Convert.ToInt32(grvLichSu[3, r].Value);
+                }
+            }
+            catch
+            {
+                ;
+            }
+            lblPaid.Text = money_paid.ToString("c", culture);
         }
 
     }

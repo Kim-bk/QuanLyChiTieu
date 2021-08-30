@@ -115,7 +115,7 @@ namespace QuanLyChiTieu
             this.cThongKe.Legends.Add(legend1);
             this.cThongKe.Location = new System.Drawing.Point(16, 72);
             this.cThongKe.Name = "cThongKe";
-            this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
@@ -139,11 +139,11 @@ namespace QuanLyChiTieu
             // 
             this.cbbMonth.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.cbbMonth.FormattingEnabled = true;
-            this.cbbMonth.Location = new System.Drawing.Point(654, 116);
+            this.cbbMonth.Location = new System.Drawing.Point(709, 116);
             this.cbbMonth.Name = "cbbMonth";
-            this.cbbMonth.Size = new System.Drawing.Size(213, 41);
+            this.cbbMonth.Size = new System.Drawing.Size(158, 41);
             this.cbbMonth.TabIndex = 3;
-            this.cbbMonth.Text = "Tất cả";
+            this.cbbMonth.SelectedIndexChanged += new System.EventHandler(this.cbbMonth_SelectedIndexChanged);
             // 
             // grvThongKe
             // 
@@ -163,9 +163,8 @@ namespace QuanLyChiTieu
             this.lblThongKe.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold);
             this.lblThongKe.Location = new System.Drawing.Point(559, 25);
             this.lblThongKe.Name = "lblThongKe";
-            this.lblThongKe.Size = new System.Drawing.Size(425, 81);
+            this.lblThongKe.Size = new System.Drawing.Size(0, 81);
             this.lblThongKe.TabIndex = 1;
-            this.lblThongKe.Text = "THỐNG KÊ";
             // 
             // frmThongKe
             // 
