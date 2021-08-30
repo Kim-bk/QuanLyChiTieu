@@ -13,7 +13,7 @@ namespace QuanLyChiTieu.GUI
     public partial class frmDanhMuc : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
-        int _id;
+        private static int _id = 0;
         public frmDanhMuc()
         {
             InitializeComponent();
@@ -132,6 +132,7 @@ namespace QuanLyChiTieu.GUI
         private void grvListDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _id = Convert.ToInt32(grvListDanhMuc.CurrentRow.Cells[0].Value);
+           // txtSearch.Text = (grvListDanhMuc.CurrentRow.Cells[1].Value).ToString();
         }
 
 
@@ -154,7 +155,6 @@ namespace QuanLyChiTieu.GUI
                          };
             grvListDanhMuc.DataSource = search;
             grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
-
         }
 
     }

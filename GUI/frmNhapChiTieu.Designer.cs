@@ -44,11 +44,12 @@ namespace QuanLyChiTieu
             this.dtepickerNgayNhap = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPaid = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.cbbOptions = new System.Windows.Forms.ComboBox();
             this.grvLichSu = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblPaid = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlNhapChiTieu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvLichSu)).BeginInit();
@@ -213,6 +214,26 @@ namespace QuanLyChiTieu
             this.panel1.Size = new System.Drawing.Size(784, 860);
             this.panel1.TabIndex = 11;
             // 
+            // lblPaid
+            // 
+            this.lblPaid.AutoSize = true;
+            this.lblPaid.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaid.Location = new System.Drawing.Point(505, 716);
+            this.lblPaid.Name = "lblPaid";
+            this.lblPaid.Size = new System.Drawing.Size(43, 32);
+            this.lblPaid.TabIndex = 14;
+            this.lblPaid.Text = "$$";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(398, 716);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 32);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Đã chi:";
+            // 
             // cbbOptions
             // 
             this.cbbOptions.Font = new System.Drawing.Font("Times New Roman", 14F);
@@ -224,7 +245,7 @@ namespace QuanLyChiTieu
             "Trong tháng"});
             this.cbbOptions.Location = new System.Drawing.Point(27, 133);
             this.cbbOptions.Name = "cbbOptions";
-            this.cbbOptions.Size = new System.Drawing.Size(149, 41);
+            this.cbbOptions.Size = new System.Drawing.Size(157, 41);
             this.cbbOptions.TabIndex = 12;
             this.cbbOptions.Text = "Tất cả";
             this.cbbOptions.SelectedIndexChanged += new System.EventHandler(this.cbbOptions_SelectedIndexChanged);
@@ -251,26 +272,6 @@ namespace QuanLyChiTieu
             this.label6.Size = new System.Drawing.Size(206, 63);
             this.label6.TabIndex = 10;
             this.label6.Text = "Lịch sử";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(398, 716);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 32);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Đã chi:";
-            // 
-            // lblPaid
-            // 
-            this.lblPaid.AutoSize = true;
-            this.lblPaid.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaid.Location = new System.Drawing.Point(505, 716);
-            this.lblPaid.Name = "lblPaid";
-            this.lblPaid.Size = new System.Drawing.Size(43, 32);
-            this.lblPaid.TabIndex = 14;
-            this.lblPaid.Text = "$$";
             // 
             // frmNhapChiTieu
             // 
@@ -315,5 +316,6 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblPaid;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

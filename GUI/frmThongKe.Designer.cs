@@ -45,6 +45,7 @@ namespace QuanLyChiTieu
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.lblThongKe = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnXuatFile = new System.Windows.Forms.Button();
             this.pnlThongKe.SuspendLayout();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
@@ -55,6 +56,7 @@ namespace QuanLyChiTieu
             // pnlThongKe
             // 
             this.pnlThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnlThongKe.Controls.Add(this.btnXuatFile);
             this.pnlThongKe.Controls.Add(this.label3);
             this.pnlThongKe.Controls.Add(this.txtSearch);
             this.pnlThongKe.Controls.Add(this.label2);
@@ -166,6 +168,19 @@ namespace QuanLyChiTieu
             this.lblThongKe.Size = new System.Drawing.Size(0, 81);
             this.lblThongKe.TabIndex = 1;
             // 
+            // btnXuatFile
+            // 
+            this.btnXuatFile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnXuatFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnXuatFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.Image")));
+            this.btnXuatFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatFile.Location = new System.Drawing.Point(1648, 846);
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.Size = new System.Drawing.Size(187, 58);
+            this.btnXuatFile.TabIndex = 17;
+            this.btnXuatFile.Text = "Xuất File";
+            this.btnXuatFile.UseVisualStyleBackColor = false;
+            // 
             // frmThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -202,5 +217,6 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnXuatFile;
     }
 }

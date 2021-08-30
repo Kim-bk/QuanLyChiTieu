@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDanhMuc));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSua = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
@@ -51,7 +50,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.btnDel);
@@ -63,23 +61,10 @@
             this.panel1.Size = new System.Drawing.Size(1126, 852);
             this.panel1.TabIndex = 10;
             // 
-            // btnSua
-            // 
-            this.btnSua.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnSua.Location = new System.Drawing.Point(753, 130);
-            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(146, 60);
-            this.btnSua.TabIndex = 12;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = false;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(60, 130);
+            this.txtSearch.Location = new System.Drawing.Point(25, 130);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(390, 47);
@@ -90,10 +75,10 @@
             // 
             this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnThem.Location = new System.Drawing.Point(554, 130);
+            this.btnThem.Location = new System.Drawing.Point(465, 119);
             this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(156, 60);
+            this.btnThem.Size = new System.Drawing.Size(181, 60);
             this.btnThem.TabIndex = 11;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
@@ -103,10 +88,10 @@
             // 
             this.btnDel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnDel.Location = new System.Drawing.Point(948, 130);
+            this.btnDel.Location = new System.Drawing.Point(672, 119);
             this.btnDel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(144, 60);
+            this.btnDel.Size = new System.Drawing.Size(181, 60);
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = false;
@@ -163,6 +148,5 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnDel;
-        private System.Windows.Forms.Button btnSua;
     }
 }

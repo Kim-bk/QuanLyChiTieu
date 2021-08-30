@@ -83,5 +83,11 @@ namespace QuanLyChiTieu
             doimatkhau.Sender(_user);
             nhung(doimatkhau);
         }
+
+        private void theoNgàyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongKeTheoNgay tketheongay = new frmThongKeTheoNgay();
+            nhung(tketheongay);
+        }
     }
 }

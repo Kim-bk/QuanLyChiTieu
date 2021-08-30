@@ -82,14 +82,14 @@ namespace QuanLyChiTieu
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(252, 34);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(252, 34);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click_1);
             // 
@@ -127,6 +127,7 @@ namespace QuanLyChiTieu
             this.theoNgàyToolStripMenuItem.Name = "theoNgàyToolStripMenuItem";
             this.theoNgàyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.theoNgàyToolStripMenuItem.Text = "Theo ngày";
+            this.theoNgàyToolStripMenuItem.Click += new System.EventHandler(this.theoNgàyToolStripMenuItem_Click);
             // 
             // trongThángToolStripMenuItem
             // 
