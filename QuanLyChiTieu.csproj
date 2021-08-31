@@ -96,6 +96,12 @@
     <Compile Include="GUI\frmThongKeTheoNgay.Designer.cs">
       <DependentUpon>frmThongKeTheoNgay.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\frmThongKe_ChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\frmThongKe_ChiTiet.Designer.cs">
+      <DependentUpon>frmThongKe_ChiTiet.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\frmTrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\frmThongKeTheoNgay.resx">
       <DependentUpon>frmThongKeTheoNgay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\frmThongKe_ChiTiet.resx">
+      <DependentUpon>frmThongKe_ChiTiet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\frmTrangChu.resx">
       <DependentUpon>frmTrangChu.cs</DependentUpon>

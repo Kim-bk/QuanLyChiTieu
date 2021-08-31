@@ -46,7 +46,9 @@ namespace QuanLyChiTieu.GUI
             this.btnXuatFile = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChiTiet = new System.Windows.Forms.Button();
             this.lblTong = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).BeginInit();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
@@ -64,6 +66,7 @@ namespace QuanLyChiTieu.GUI
             this.grvThongKe.RowTemplate.Height = 28;
             this.grvThongKe.Size = new System.Drawing.Size(834, 644);
             this.grvThongKe.TabIndex = 3;
+            this.grvThongKe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvThongKe_CellClick);
             // 
             // pnlBieuDo
             // 
@@ -193,6 +196,7 @@ namespace QuanLyChiTieu.GUI
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.btnChiTiet);
             this.panel1.Controls.Add(this.lblTong);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnXuatFile);
@@ -208,6 +212,18 @@ namespace QuanLyChiTieu.GUI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1872, 948);
             this.panel1.TabIndex = 0;
+            // 
+            // btnChiTiet
+            // 
+            this.btnChiTiet.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnChiTiet.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnChiTiet.Location = new System.Drawing.Point(709, 126);
+            this.btnChiTiet.Name = "btnChiTiet";
+            this.btnChiTiet.Size = new System.Drawing.Size(158, 46);
+            this.btnChiTiet.TabIndex = 19;
+            this.btnChiTiet.Text = "Chi tiết";
+            this.btnChiTiet.UseVisualStyleBackColor = false;
+            this.btnChiTiet.Click += new System.EventHandler(this.btnChiTiet_Click);
             // 
             // lblTong
             // 
@@ -255,5 +271,7 @@ namespace QuanLyChiTieu.GUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTong;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnChiTiet;
     }
 }

@@ -83,7 +83,6 @@ namespace QuanLyChiTieu
                     chitieuct.chitieu_id = chitieu.chitieu_id;
                     db.tbChiTieuChiTiets.InsertOnSubmit(chitieuct);
                     db.SubmitChanges();
-                
                  
                     Reset();
                     loadLichSu();
@@ -92,7 +91,6 @@ namespace QuanLyChiTieu
                 catch(Exception)
                 {
                     Reset();
-                    ;
                 }
             }    
 

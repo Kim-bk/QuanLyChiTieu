@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyChiTieu.GUI;
 
 namespace QuanLyChiTieu
 {
@@ -16,12 +17,14 @@ namespace QuanLyChiTieu
         dbcsdlDataContext db = new dbcsdlDataContext();
         CultureInfo culture = new CultureInfo("vi-VN");
         private static int month;
+        private static int _idDanhmuc = 0;
         int current_month = DateTime.Now.Month;
 
         public frmThongKe()
         {
+            month = current_month;
             InitializeComponent();
-            loadData(current_month);
+            loadData(month);
             LoadCombobox();
         }
 
@@ -71,8 +74,6 @@ namespace QuanLyChiTieu
             cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
             cThongKe.DataBind();
 
-            //cThongKe.DataSource = null;
-
             for (int  i = 0; i < grvThongKe.Rows.Count; i++)
             {
                 sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
@@ -117,6 +118,7 @@ namespace QuanLyChiTieu
 
         private void cbbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _idDanhmuc = 0;
             month = (cbbMonth.SelectedIndex + 1);
             loadData(month);
         }
@@ -124,6 +126,25 @@ namespace QuanLyChiTieu
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnChiTiet_Click(object sender, EventArgs e)
+        {
+            if (_idDanhmuc == 0)
+            {
+                MessageBox.Show("Chưa chọn danh mục để xem!");
+            }
+            else
+            {
+                frmThongKe_ChiTiet chitiet = new frmThongKe_ChiTiet();
+                chitiet.Sender(_idDanhmuc, month, null, null);
+                chitiet.ShowDialog();
+            }
+        }
+
+        private void grvThongKe_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _idDanhmuc = Convert.ToInt32(grvThongKe.CurrentRow.Cells[0].Value);
         }
     }
 }

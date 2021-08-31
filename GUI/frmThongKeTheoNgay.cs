@@ -17,6 +17,7 @@ namespace QuanLyChiTieu.GUI
         dbcsdlDataContext db = new dbcsdlDataContext();
         private static DateTime tungay;
         private static DateTime denngay;
+        private static int _idDanhmuc = 0;
 
         public frmThongKeTheoNgay()
         {
@@ -27,6 +28,7 @@ namespace QuanLyChiTieu.GUI
             lblTong.Text = "";
             label4.Visible = false;
             btnXuatFile.Visible = false;
+            btnChiTiet.Visible = false;
         }
 
    
@@ -67,15 +69,16 @@ namespace QuanLyChiTieu.GUI
             {
                 sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
             }
-  
 
             btnXuatFile.Visible = true;
+            btnChiTiet.Visible = true;
             label4.Visible = true;
             lblTong.Text = sum.ToString("c", culture);
         }
 
         private void btnXem_Click(object sender, EventArgs e)
         {
+            _idDanhmuc = 0;
             textBox1.Text = "";
             tungay = dteTungay.Value;
             denngay = dteDenngay.Value;
@@ -116,6 +119,25 @@ namespace QuanLyChiTieu.GUI
             grvThongKe.Columns[1].HeaderText = "Tên danh mục";
             grvThongKe.Columns[2].HeaderText = "Đã chi";
 
+        }
+     
+        private void btnChiTiet_Click(object sender, EventArgs e)
+        {
+            if (_idDanhmuc != 0)
+            {
+                frmThongKe_ChiTiet chitiet = new frmThongKe_ChiTiet();
+                chitiet.Sender(_idDanhmuc, 0, tungay, denngay);
+                chitiet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn danh mục để xem!");
+            }
+        }
+
+        private void grvThongKe_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _idDanhmuc = Convert.ToInt32(grvThongKe.CurrentRow.Cells[0].Value);
         }
 
         private void btnXuatFile_Click(object sender, EventArgs e)

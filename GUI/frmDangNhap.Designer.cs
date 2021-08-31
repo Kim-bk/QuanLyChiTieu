@@ -67,7 +67,7 @@ namespace QuanLyChiTieu
             // btnThoat
             // 
             this.btnThoat.BackColor = System.Drawing.Color.Red;
-            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 10F);
+            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.Location = new System.Drawing.Point(1024, 658);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(128, 59);
@@ -79,7 +79,7 @@ namespace QuanLyChiTieu
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnOk.Font = new System.Drawing.Font("Times New Roman", 10F);
+            this.btnOk.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.Location = new System.Drawing.Point(805, 658);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(128, 59);
