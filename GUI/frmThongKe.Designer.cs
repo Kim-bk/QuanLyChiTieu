@@ -30,11 +30,12 @@ namespace QuanLyChiTieu
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThongKe));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlThongKe = new System.Windows.Forms.Panel();
+            this.btnXuatFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@ namespace QuanLyChiTieu
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.lblThongKe = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnXuatFile = new System.Windows.Forms.Button();
             this.pnlThongKe.SuspendLayout();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
@@ -68,6 +68,20 @@ namespace QuanLyChiTieu
             this.pnlThongKe.Name = "pnlThongKe";
             this.pnlThongKe.Size = new System.Drawing.Size(1872, 948);
             this.pnlThongKe.TabIndex = 0;
+            // 
+            // btnXuatFile
+            // 
+            this.btnXuatFile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnXuatFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnXuatFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.Image")));
+            this.btnXuatFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatFile.Location = new System.Drawing.Point(1648, 846);
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.Size = new System.Drawing.Size(187, 58);
+            this.btnXuatFile.TabIndex = 17;
+            this.btnXuatFile.Text = "Xuất File";
+            this.btnXuatFile.UseVisualStyleBackColor = false;
+            this.btnXuatFile.Click += new System.EventHandler(this.btnXuatFile_Click);
             // 
             // label3
             // 
@@ -111,18 +125,18 @@ namespace QuanLyChiTieu
             // 
             // cThongKe
             // 
-            chartArea1.Name = "ChartArea1";
-            this.cThongKe.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.cThongKe.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.cThongKe.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.cThongKe.Legends.Add(legend3);
             this.cThongKe.Location = new System.Drawing.Point(16, 72);
             this.cThongKe.Name = "cThongKe";
             this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Chi Tiêu";
-            this.cThongKe.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Chi Tiêu";
+            this.cThongKe.Series.Add(series3);
             this.cThongKe.Size = new System.Drawing.Size(819, 519);
             this.cThongKe.TabIndex = 1;
             this.cThongKe.Text = "Chi tiêu";
@@ -141,9 +155,9 @@ namespace QuanLyChiTieu
             // 
             this.cbbMonth.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.cbbMonth.FormattingEnabled = true;
-            this.cbbMonth.Location = new System.Drawing.Point(709, 116);
+            this.cbbMonth.Location = new System.Drawing.Point(679, 116);
             this.cbbMonth.Name = "cbbMonth";
-            this.cbbMonth.Size = new System.Drawing.Size(158, 41);
+            this.cbbMonth.Size = new System.Drawing.Size(188, 41);
             this.cbbMonth.TabIndex = 3;
             this.cbbMonth.SelectedIndexChanged += new System.EventHandler(this.cbbMonth_SelectedIndexChanged);
             // 
@@ -167,19 +181,6 @@ namespace QuanLyChiTieu
             this.lblThongKe.Name = "lblThongKe";
             this.lblThongKe.Size = new System.Drawing.Size(0, 81);
             this.lblThongKe.TabIndex = 1;
-            // 
-            // btnXuatFile
-            // 
-            this.btnXuatFile.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnXuatFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnXuatFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.Image")));
-            this.btnXuatFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXuatFile.Location = new System.Drawing.Point(1648, 846);
-            this.btnXuatFile.Name = "btnXuatFile";
-            this.btnXuatFile.Size = new System.Drawing.Size(187, 58);
-            this.btnXuatFile.TabIndex = 17;
-            this.btnXuatFile.Text = "Xuất File";
-            this.btnXuatFile.UseVisualStyleBackColor = false;
             // 
             // frmThongKe
             // 

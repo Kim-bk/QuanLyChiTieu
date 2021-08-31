@@ -120,5 +120,10 @@ namespace QuanLyChiTieu
             month = (cbbMonth.SelectedIndex + 1);
             loadData(month);
         }
+
+        private void btnXuatFile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

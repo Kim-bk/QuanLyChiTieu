@@ -33,42 +33,25 @@ namespace QuanLyChiTieu.GUI
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThongKeTheoNgay));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.pnlBieuDo = new System.Windows.Forms.Panel();
             this.cThongKe = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dteTungay = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dteDenngay = new System.Windows.Forms.DateTimePicker();
             this.btnXem = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.btnXuatFile = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTong = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).BeginInit();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.btnXem);
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.pnlBieuDo);
-            this.panel1.Controls.Add(this.grvThongKe);
-            this.panel1.Location = new System.Drawing.Point(12, 49);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1872, 948);
-            this.panel1.TabIndex = 0;
             // 
             // grvThongKe
             // 
@@ -106,7 +89,7 @@ namespace QuanLyChiTieu.GUI
             series1.Legend = "Legend1";
             series1.Name = "Chi Tiêu";
             this.cThongKe.Series.Add(series1);
-            this.cThongKe.Size = new System.Drawing.Size(819, 519);
+            this.cThongKe.Size = new System.Drawing.Size(819, 535);
             this.cThongKe.TabIndex = 1;
             this.cThongKe.Text = "Chi tiêu";
             // 
@@ -120,15 +103,16 @@ namespace QuanLyChiTieu.GUI
             this.label1.TabIndex = 0;
             this.label1.Text = "Thống Kê Biểu Đồ";
             // 
-            // dateTimePicker1
+            // dteTungay
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(144, 26);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(202, 40);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dteTungay.CalendarFont = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dteTungay.CustomFormat = "dd/MM/yyyy";
+            this.dteTungay.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.dteTungay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dteTungay.Location = new System.Drawing.Point(144, 26);
+            this.dteTungay.Name = "dteTungay";
+            this.dteTungay.Size = new System.Drawing.Size(202, 40);
+            this.dteTungay.TabIndex = 1;
             // 
             // label2
             // 
@@ -152,56 +136,88 @@ namespace QuanLyChiTieu.GUI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 133);
+            this.textBox1.Location = new System.Drawing.Point(33, 132);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(405, 41);
+            this.textBox1.Size = new System.Drawing.Size(485, 40);
             this.textBox1.TabIndex = 10;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // dateTimePicker2
+            // dteDenngay
             // 
-            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(486, 26);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(202, 40);
-            this.dateTimePicker2.TabIndex = 11;
+            this.dteDenngay.CalendarFont = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dteDenngay.CustomFormat = "dd/MM/yyyy";
+            this.dteDenngay.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.dteDenngay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dteDenngay.Location = new System.Drawing.Point(486, 26);
+            this.dteDenngay.Name = "dteDenngay";
+            this.dteDenngay.Size = new System.Drawing.Size(202, 40);
+            this.dteDenngay.TabIndex = 11;
             // 
             // btnXem
             // 
             this.btnXem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnXem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnXem.Location = new System.Drawing.Point(709, 26);
+            this.btnXem.Location = new System.Drawing.Point(709, 25);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(158, 47);
             this.btnXem.TabIndex = 13;
             this.btnXem.Text = "Xem";
             this.btnXem.UseVisualStyleBackColor = false;
+            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
-            // label5
+            // btnXuatFile
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(992, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(326, 45);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "NHẬP CHI TIÊU";
+            this.btnXuatFile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnXuatFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnXuatFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.Image")));
+            this.btnXuatFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatFile.Location = new System.Drawing.Point(1648, 861);
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.Size = new System.Drawing.Size(187, 58);
+            this.btnXuatFile.TabIndex = 16;
+            this.btnXuatFile.Text = "Xuất File";
+            this.btnXuatFile.UseVisualStyleBackColor = false;
+            this.btnXuatFile.Click += new System.EventHandler(this.btnXuatFile_Click);
             // 
-            // button1
+            // label4
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1648, 861);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(187, 58);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Xuất File";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(493, 872);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 32);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Tổng chi:";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.lblTong);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.btnXuatFile);
+            this.panel1.Controls.Add(this.btnXem);
+            this.panel1.Controls.Add(this.dteDenngay);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dteTungay);
+            this.panel1.Controls.Add(this.pnlBieuDo);
+            this.panel1.Controls.Add(this.grvThongKe);
+            this.panel1.Location = new System.Drawing.Point(12, 49);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1872, 948);
+            this.panel1.TabIndex = 0;
+            // 
+            // lblTong
+            // 
+            this.lblTong.AutoSize = true;
+            this.lblTong.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTong.Location = new System.Drawing.Point(628, 872);
+            this.lblTong.Name = "lblTong";
+            this.lblTong.Size = new System.Drawing.Size(85, 32);
+            this.lblTong.TabIndex = 18;
+            this.lblTong.Text = "label6";
             // 
             // frmThongKeTheoNgay
             // 
@@ -212,30 +228,32 @@ namespace QuanLyChiTieu.GUI
             this.Controls.Add(this.panel1);
             this.Name = "frmThongKeTheoNgay";
             this.Text = "frmThongKeTheoNgay";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Load += new System.EventHandler(this.frmThongKeTheoNgay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).EndInit();
             this.pnlBieuDo.ResumeLayout(false);
             this.pnlBieuDo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView grvThongKe;
         private System.Windows.Forms.Panel pnlBieuDo;
         private System.Windows.Forms.DataVisualization.Charting.Chart cThongKe;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dteTungay;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dteDenngay;
         private System.Windows.Forms.Button btnXem;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnXuatFile;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblTong;
     }
 }
