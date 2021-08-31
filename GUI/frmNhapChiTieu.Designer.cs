@@ -209,7 +209,7 @@ namespace QuanLyChiTieu
             this.panel1.Controls.Add(this.cbbOptions);
             this.panel1.Controls.Add(this.grvLichSu);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(1043, 12);
+            this.panel1.Location = new System.Drawing.Point(1039, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 860);
             this.panel1.TabIndex = 11;

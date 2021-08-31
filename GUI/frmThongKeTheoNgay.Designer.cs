@@ -29,14 +29,13 @@ namespace QuanLyChiTieu.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThongKeTheoNgay));
             this.grvThongKe = new System.Windows.Forms.DataGridView();
             this.pnlBieuDo = new System.Windows.Forms.Panel();
             this.cThongKe = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
             this.dteTungay = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@ namespace QuanLyChiTieu.GUI
             this.btnChiTiet = new System.Windows.Forms.Button();
             this.lblTong = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvThongKe)).BeginInit();
             this.pnlBieuDo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cThongKe)).BeginInit();
@@ -71,8 +71,8 @@ namespace QuanLyChiTieu.GUI
             // pnlBieuDo
             // 
             this.pnlBieuDo.BackColor = System.Drawing.Color.White;
+            this.pnlBieuDo.Controls.Add(this.label5);
             this.pnlBieuDo.Controls.Add(this.cThongKe);
-            this.pnlBieuDo.Controls.Add(this.label1);
             this.pnlBieuDo.Location = new System.Drawing.Point(1000, 192);
             this.pnlBieuDo.Name = "pnlBieuDo";
             this.pnlBieuDo.Size = new System.Drawing.Size(838, 638);
@@ -80,31 +80,21 @@ namespace QuanLyChiTieu.GUI
             // 
             // cThongKe
             // 
-            chartArea1.Name = "ChartArea1";
-            this.cThongKe.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.cThongKe.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.cThongKe.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.cThongKe.Legends.Add(legend2);
             this.cThongKe.Location = new System.Drawing.Point(16, 72);
             this.cThongKe.Name = "cThongKe";
             this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Chi Tiêu";
-            this.cThongKe.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Chi Tiêu";
+            this.cThongKe.Series.Add(series2);
             this.cThongKe.Size = new System.Drawing.Size(819, 535);
             this.cThongKe.TabIndex = 1;
             this.cThongKe.Text = "Chi tiêu";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 20F);
-            this.label1.Location = new System.Drawing.Point(239, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Thống Kê Biểu Đồ";
             // 
             // dteTungay
             // 
@@ -235,6 +225,16 @@ namespace QuanLyChiTieu.GUI
             this.lblTong.TabIndex = 18;
             this.lblTong.Text = "label6";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 20F);
+            this.label5.Location = new System.Drawing.Point(215, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(300, 46);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Biểu Đồ Chi Tiêu";
+            // 
             // frmThongKeTheoNgay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -260,7 +260,6 @@ namespace QuanLyChiTieu.GUI
         private System.Windows.Forms.DataGridView grvThongKe;
         private System.Windows.Forms.Panel pnlBieuDo;
         private System.Windows.Forms.DataVisualization.Charting.Chart cThongKe;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dteTungay;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -273,5 +272,6 @@ namespace QuanLyChiTieu.GUI
         private System.Windows.Forms.Label lblTong;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnChiTiet;
+        private System.Windows.Forms.Label label5;
     }
 }

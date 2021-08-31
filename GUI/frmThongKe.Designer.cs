@@ -31,9 +31,9 @@ namespace QuanLyChiTieu
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThongKe));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlThongKe = new System.Windows.Forms.Panel();
             this.btnChiTiet = new System.Windows.Forms.Button();
             this.btnXuatFile = new System.Windows.Forms.Button();
@@ -75,7 +75,7 @@ namespace QuanLyChiTieu
             // 
             this.btnChiTiet.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnChiTiet.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnChiTiet.Location = new System.Drawing.Point(725, 111);
+            this.btnChiTiet.Location = new System.Drawing.Point(542, 111);
             this.btnChiTiet.Name = "btnChiTiet";
             this.btnChiTiet.Size = new System.Drawing.Size(142, 51);
             this.btnChiTiet.TabIndex = 18;
@@ -139,18 +139,18 @@ namespace QuanLyChiTieu
             // 
             // cThongKe
             // 
-            chartArea1.Name = "ChartArea1";
-            this.cThongKe.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.cThongKe.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.cThongKe.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.cThongKe.Legends.Add(legend5);
             this.cThongKe.Location = new System.Drawing.Point(16, 72);
             this.cThongKe.Name = "cThongKe";
             this.cThongKe.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Chi Tiêu";
-            this.cThongKe.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series5.Legend = "Legend1";
+            series5.Name = "Chi Tiêu";
+            this.cThongKe.Series.Add(series5);
             this.cThongKe.Size = new System.Drawing.Size(819, 519);
             this.cThongKe.TabIndex = 1;
             this.cThongKe.Text = "Chi tiêu";
@@ -159,17 +159,17 @@ namespace QuanLyChiTieu
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20F);
-            this.label1.Location = new System.Drawing.Point(239, 23);
+            this.label1.Location = new System.Drawing.Point(210, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 46);
+            this.label1.Size = new System.Drawing.Size(300, 46);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Thống Kê Biểu Đồ";
+            this.label1.Text = "Biểu Đồ Chi Tiêu";
             // 
             // cbbMonth
             // 
             this.cbbMonth.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.cbbMonth.FormattingEnabled = true;
-            this.cbbMonth.Location = new System.Drawing.Point(33, 25);
+            this.cbbMonth.Location = new System.Drawing.Point(701, 116);
             this.cbbMonth.Name = "cbbMonth";
             this.cbbMonth.Size = new System.Drawing.Size(166, 41);
             this.cbbMonth.TabIndex = 3;
