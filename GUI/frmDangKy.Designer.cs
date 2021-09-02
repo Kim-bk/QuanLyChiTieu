@@ -75,7 +75,7 @@ namespace QuanLyChiTieu
             // 
             // txtDangNhap
             // 
-            this.txtDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtDangNhap.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtDangNhap.Location = new System.Drawing.Point(810, 423);
             this.txtDangNhap.Multiline = true;
             this.txtDangNhap.Name = "txtDangNhap";
@@ -84,7 +84,7 @@ namespace QuanLyChiTieu
             // 
             // txtPass
             // 
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtPass.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtPass.Location = new System.Drawing.Point(810, 544);
             this.txtPass.Multiline = true;
             this.txtPass.Name = "txtPass";
@@ -94,7 +94,7 @@ namespace QuanLyChiTieu
             // 
             // txtRePass
             // 
-            this.txtRePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtRePass.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtRePass.Location = new System.Drawing.Point(810, 659);
             this.txtRePass.Multiline = true;
             this.txtRePass.Name = "txtRePass";
@@ -149,7 +149,7 @@ namespace QuanLyChiTieu
             // 
             // txtFullname
             // 
-            this.txtFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtFullname.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtFullname.Location = new System.Drawing.Point(810, 301);
             this.txtFullname.Multiline = true;
             this.txtFullname.Name = "txtFullname";

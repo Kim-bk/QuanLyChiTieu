@@ -90,7 +90,7 @@ namespace QuanLyChiTieu
             // 
             // txtMatKhau
             // 
-            this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtMatKhau.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtMatKhau.Location = new System.Drawing.Point(805, 542);
             this.txtMatKhau.Multiline = true;
             this.txtMatKhau.Name = "txtMatKhau";
@@ -100,7 +100,7 @@ namespace QuanLyChiTieu
             // 
             // txtDangNhap
             // 
-            this.txtDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtDangNhap.Font = new System.Drawing.Font("Times New Roman", 14F);
             this.txtDangNhap.Location = new System.Drawing.Point(805, 430);
             this.txtDangNhap.Multiline = true;
             this.txtDangNhap.Name = "txtDangNhap";

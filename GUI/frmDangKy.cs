@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyChiTieu.Common;
@@ -19,7 +20,6 @@ namespace QuanLyChiTieu
         {
             InitializeComponent();
         }
-
 
         protected void Reset()
         {
@@ -44,13 +44,29 @@ namespace QuanLyChiTieu
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            bool checkIsSpace = false;
+            foreach(char i in txtPass.Text.ToCharArray())
+            {
+                if(i == ' ')
+                {
+                    checkIsSpace = true;   
+                }
+            }
+
             if (IsEmptyInput())
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
             }
             else
             {
-                if (txtPass.Text != txtRePass.Text)
+                if (!regexItem.IsMatch(txtPass.Text) || checkIsSpace == true)
+                {
+                    MessageBox.Show("Mật khẩu không được chứa ký tự đặc biệt!");
+                    txtRePass.Text = "";
+                    txtPass.Text = "";
+                }
+                else if (txtPass.Text != txtRePass.Text)
                 {
                     MessageBox.Show("Mật khẩu nhập lại không đúng!");
                     txtPass.Text = "";

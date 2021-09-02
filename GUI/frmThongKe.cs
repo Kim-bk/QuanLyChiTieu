@@ -142,7 +142,7 @@ namespace QuanLyChiTieu
             _idDanhmuc = Convert.ToInt32(grvThongKe.CurrentRow.Cells[0].Value);
         }
 
-        private void btnXuatFile_Click(object sender, EventArgs e)
+        private void btnXuatFile_Click(object sender, EventArgs e)    
         {
             try
             {
@@ -162,6 +162,7 @@ namespace QuanLyChiTieu
                 Workbook wb = xlApp.Workbooks.Add(misValue);
 
                 Worksheet ws = (Worksheet)wb.Worksheets[1];
+                ws.Name = "Tháng " + month.ToString();
 
                 if (ws == null)
                 {
@@ -212,7 +213,6 @@ namespace QuanLyChiTieu
                 row = 3;//dữ liệu xuất bắt đầu từ dòng số 4 trong file Excel (khai báo 3 để vào vòng lặp nó ++ thành 4)
 
                 var getdata = from dm in db.tbDanhMucs
-                              where dm.danhmuc_name.Contains(txtSearch.Text)
                               group dm by dm.danhmuc_id into item
                               select new
                               {
