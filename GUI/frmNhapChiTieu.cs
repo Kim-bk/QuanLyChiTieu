@@ -234,90 +234,203 @@ namespace QuanLyChiTieu
             options = cbbOptions.SelectedItem.ToString();
             loadLichSu(options);
         }
-        protected void loadLichSu(string options ="")
+        protected void loadLichSu(string options ="", bool isSearch = false)
         {
             int money_paid = 0;
             if (options == "Trong ngày")
             {
-                var data = from ls in db.tbChiTieus
-                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
-                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                           where ls.account_id == _idUser
-                           && ls.created_date.Value.Date == DateTime.Now
-                           orderby ls.created_date descending
-                           select new
-                           {
-                               ls.chitieu_id,
-                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                               dg.diengiai_name,
-                               dg.diengiai_price,
+                if(!isSearch)
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && ls.created_date.Value.Date == DateTime.Now
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
 
-                           };
-                grvLichSu.DataSource = data;
+                               };
+                    grvLichSu.DataSource = data;
+                }
+                else
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && (dg.diengiai_name.Contains(txtSearch.Text)
+                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && ls.created_date.Value.Date == DateTime.Now
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+
+                               };
+                    grvLichSu.DataSource = data;
+                }
+           
             }   
             else if(options == "Trong tháng")
             {
-                var data = from ls in db.tbChiTieus
-                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
-                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                           where ls.account_id == _idUser
-                           && ls.created_date.Value.Month == DateTime.Now.Month
-                           && ls.created_date.Value.Year == DateTime.Now.Year
-                           orderby ls.created_date descending
-                           select new
-                           {
-                               ls.chitieu_id,
-                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                               dg.diengiai_name,
-                               dg.diengiai_price,
+                if(!isSearch)
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && ls.created_date.Value.Month == DateTime.Now.Month
+                               && ls.created_date.Value.Year == DateTime.Now.Year
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
 
-                           };
+                               };
 
-                grvLichSu.DataSource = data;
+                    grvLichSu.DataSource = data;
+                }
+                else
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && (dg.diengiai_name.Contains(txtSearch.Text)
+                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && ls.created_date.Value.Month == DateTime.Now.Month
+                               && ls.created_date.Value.Year == DateTime.Now.Year
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+
+                               };
+                    grvLichSu.DataSource = data;
+                }
             }
             else if(options == "Trong tuần")
             {
-                var data = from ls in db.tbChiTieus
-                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
-                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                           where ls.account_id == _idUser
-                           && ls.created_date >= monday
-                           && ls.created_date <= saturday
-                           orderby ls.created_date descending
-                           select new
-                           {
-                               ls.chitieu_id,
-                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                               dg.diengiai_name,
-                               dg.diengiai_price,
+                if(!isSearch)
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in  db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && ls.created_date >= monday
+                               && ls.created_date <= saturday
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
 
-                           };
+                               };
 
-                grvLichSu.DataSource = data;
+                    grvLichSu.DataSource = data;
+                }
+                else
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && (dg.diengiai_name.Contains(txtSearch.Text)
+                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && ls.created_date >= monday
+                               && ls.created_date <= saturday
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+
+                               };
+
+                    grvLichSu.DataSource = data;
+                }
             }    
             else
             {
-                var data = from ls in db.tbChiTieus
-                           join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
-                           join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
-                           where ls.account_id == _idUser
-                           orderby ls.created_date descending
-                           select new
-                           {
-                               ls.chitieu_id,
-                               ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                               dg.diengiai_name,
-                               dg.diengiai_price,
+                if(!isSearch)
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
 
-                           };
+                               };
 
-                grvLichSu.DataSource = data;
+                    grvLichSu.DataSource = data;
+                }
+                else
+                {
+                    var data = from ls in db.tbChiTieus
+                               join ctct in db.tbChiTieuChiTiets on ls.chitieu_id equals ctct.chitieu_id
+                               join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               where ls.account_id == _idUser
+                               && (dg.diengiai_name.Contains(txtSearch.Text)
+                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               orderby ls.created_date descending
+                               select new
+                               {
+                                   ls.chitieu_id,
+                                   ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                   dm.danhmuc_name,
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+
+                               };
+                    grvLichSu.DataSource = data;
+                }
             }
-       
+            grvLichSu.Columns[3].Width = 150;
+            grvLichSu.Columns[4].Width = 50;
             grvLichSu.Columns[0].Visible = false;
             grvLichSu.Columns[1].HeaderText = "Ngày tạo";
-            grvLichSu.Columns[2].HeaderText = "Diễn giải";
-            grvLichSu.Columns[3].HeaderText = "Chi phí";
+            grvLichSu.Columns[2].HeaderText = "Danh mục";
+            grvLichSu.Columns[3].HeaderText = "Diễn giải";
+            grvLichSu.Columns[4].HeaderText = "Chi phí";
 
             try
             {
@@ -333,5 +446,9 @@ namespace QuanLyChiTieu
             lblPaid.Text = money_paid.ToString("c", culture);
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            loadLichSu(options, true);
+        }
     }
 }

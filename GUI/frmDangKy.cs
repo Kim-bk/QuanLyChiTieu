@@ -21,7 +21,7 @@ namespace QuanLyChiTieu
             InitializeComponent();
         }
 
-        protected void Reset()
+        protected void ResetData()
         {
             txtDangNhap.Text = "";
             txtFullname.Text = "";
@@ -57,6 +57,7 @@ namespace QuanLyChiTieu
             if (IsEmptyInput())
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                ResetData();
             }
             else
             {
@@ -82,7 +83,7 @@ namespace QuanLyChiTieu
                     db.tbAccounts.InsertOnSubmit(user);
                     db.SubmitChanges();
                     MessageBox.Show("Tạo tài khoản thành công!");
-                    Reset();
+                    ResetData();
                 }
             }
         }

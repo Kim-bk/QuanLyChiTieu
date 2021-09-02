@@ -68,6 +68,7 @@ namespace QuanLyChiTieu
             // 
             this.btnThoat.BackColor = System.Drawing.Color.Red;
             this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.ForeColor = System.Drawing.Color.White;
             this.btnThoat.Location = new System.Drawing.Point(1024, 658);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(128, 59);
@@ -80,11 +81,12 @@ namespace QuanLyChiTieu
             // 
             this.btnOk.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnOk.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.Location = new System.Drawing.Point(805, 658);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(128, 59);
             this.btnOk.TabIndex = 21;
-            this.btnOk.Text = "OK";
+            this.btnOk.Text = "Đăng nhập";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click_1);
             // 

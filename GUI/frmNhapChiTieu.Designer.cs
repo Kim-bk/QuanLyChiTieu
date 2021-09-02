@@ -29,6 +29,7 @@ namespace QuanLyChiTieu
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhapChiTieu));
@@ -46,12 +47,14 @@ namespace QuanLyChiTieu
             this.dtepickerNgayNhap = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblPaid = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbbOptions = new System.Windows.Forms.ComboBox();
             this.grvLichSu = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnlNhapChiTieu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvLichSu)).BeginInit();
@@ -82,7 +85,7 @@ namespace QuanLyChiTieu
             // 
             this.btnXoa.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnXoa.Location = new System.Drawing.Point(467, 606);
+            this.btnXoa.Location = new System.Drawing.Point(467, 544);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(180, 50);
             this.btnXoa.TabIndex = 11;
@@ -94,7 +97,7 @@ namespace QuanLyChiTieu
             // 
             this.btnSua.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSua.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnSua.Location = new System.Drawing.Point(260, 606);
+            this.btnSua.Location = new System.Drawing.Point(260, 544);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(180, 50);
             this.btnSua.TabIndex = 10;
@@ -127,7 +130,7 @@ namespace QuanLyChiTieu
             // 
             this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnThem.Location = new System.Drawing.Point(41, 606);
+            this.btnThem.Location = new System.Drawing.Point(41, 544);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(180, 50);
             this.btnThem.TabIndex = 7;
@@ -206,6 +209,7 @@ namespace QuanLyChiTieu
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.lblPaid);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.cbbOptions);
@@ -216,11 +220,21 @@ namespace QuanLyChiTieu
             this.panel1.Size = new System.Drawing.Size(784, 860);
             this.panel1.TabIndex = 11;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.txtSearch.Location = new System.Drawing.Point(205, 133);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(553, 41);
+            this.txtSearch.TabIndex = 15;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // lblPaid
             // 
             this.lblPaid.AutoSize = true;
             this.lblPaid.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaid.Location = new System.Drawing.Point(505, 716);
+            this.lblPaid.Location = new System.Drawing.Point(505, 761);
             this.lblPaid.Name = "lblPaid";
             this.lblPaid.Size = new System.Drawing.Size(43, 32);
             this.lblPaid.TabIndex = 14;
@@ -230,7 +244,7 @@ namespace QuanLyChiTieu
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(398, 716);
+            this.label7.Location = new System.Drawing.Point(398, 761);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 32);
             this.label7.TabIndex = 13;
@@ -277,7 +291,7 @@ namespace QuanLyChiTieu
             this.grvLichSu.Name = "grvLichSu";
             this.grvLichSu.RowHeadersWidth = 62;
             this.grvLichSu.RowTemplate.Height = 28;
-            this.grvLichSu.Size = new System.Drawing.Size(731, 488);
+            this.grvLichSu.Size = new System.Drawing.Size(731, 535);
             this.grvLichSu.TabIndex = 11;
             this.grvLichSu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvLichSu_CellDoubleClick);
             // 
@@ -290,6 +304,12 @@ namespace QuanLyChiTieu
             this.label6.Size = new System.Drawing.Size(206, 63);
             this.label6.TabIndex = 10;
             this.label6.Text = "Lịch sử";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // frmNhapChiTieu
             // 
@@ -335,5 +355,7 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblPaid;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
