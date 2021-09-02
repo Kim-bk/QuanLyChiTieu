@@ -45,9 +45,6 @@ namespace QuanLyChiTieu
     partial void InserttbDanhMuc(tbDanhMuc instance);
     partial void UpdatetbDanhMuc(tbDanhMuc instance);
     partial void DeletetbDanhMuc(tbDanhMuc instance);
-    partial void InserttbThongKe(tbThongKe instance);
-    partial void UpdatetbThongKe(tbThongKe instance);
-    partial void DeletetbThongKe(tbThongKe instance);
     #endregion
 		
 		public dbcsdlDataContext() : 
@@ -117,14 +114,6 @@ namespace QuanLyChiTieu
 			get
 			{
 				return this.GetTable<tbDanhMuc>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbThongKe> tbThongKes
-		{
-			get
-			{
-				return this.GetTable<tbThongKe>();
 			}
 		}
 	}
@@ -785,8 +774,6 @@ namespace QuanLyChiTieu
 		
 		private System.Nullable<int> _soluong;
 		
-		private EntitySet<tbThongKe> _tbThongKes;
-		
 		private EntityRef<tbChiTieu> _tbChiTieu;
 		
 		private EntityRef<tbDienGiai> _tbDienGiai;
@@ -809,7 +796,6 @@ namespace QuanLyChiTieu
 		
 		public tbChiTieuChiTiet()
 		{
-			this._tbThongKes = new EntitySet<tbThongKe>(new Action<tbThongKe>(this.attach_tbThongKes), new Action<tbThongKe>(this.detach_tbThongKes));
 			this._tbChiTieu = default(EntityRef<tbChiTieu>);
 			this._tbDienGiai = default(EntityRef<tbDienGiai>);
 			OnCreated();
@@ -923,19 +909,6 @@ namespace QuanLyChiTieu
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbChiTieuChiTiet_tbThongKe", Storage="_tbThongKes", ThisKey="chitieuchitiet_id", OtherKey="chitieuchitiet_id")]
-		public EntitySet<tbThongKe> tbThongKes
-		{
-			get
-			{
-				return this._tbThongKes;
-			}
-			set
-			{
-				this._tbThongKes.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbChiTieu_tbChiTieuChiTiet", Storage="_tbChiTieu", ThisKey="chitieu_id", OtherKey="chitieu_id", IsForeignKey=true)]
 		public tbChiTieu tbChiTieu
 		{
@@ -1023,18 +996,6 @@ namespace QuanLyChiTieu
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_tbThongKes(tbThongKe entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbChiTieuChiTiet = this;
-		}
-		
-		private void detach_tbThongKes(tbThongKe entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbChiTieuChiTiet = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbDanhMuc")]
@@ -1047,6 +1008,8 @@ namespace QuanLyChiTieu
 		
 		private string _danhmuc_name;
 		
+		private System.Nullable<int> _account_id;
+		
 		private EntitySet<tbDienGiai> _tbDienGiais;
 		
     #region Extensibility Method Definitions
@@ -1057,6 +1020,8 @@ namespace QuanLyChiTieu
     partial void Ondanhmuc_idChanged();
     partial void Ondanhmuc_nameChanging(string value);
     partial void Ondanhmuc_nameChanged();
+    partial void Onaccount_idChanging(System.Nullable<int> value);
+    partial void Onaccount_idChanged();
     #endregion
 		
 		public tbDanhMuc()
@@ -1105,6 +1070,26 @@ namespace QuanLyChiTieu
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_id", DbType="Int")]
+		public System.Nullable<int> account_id
+		{
+			get
+			{
+				return this._account_id;
+			}
+			set
+			{
+				if ((this._account_id != value))
+				{
+					this.Onaccount_idChanging(value);
+					this.SendPropertyChanging();
+					this._account_id = value;
+					this.SendPropertyChanged("account_id");
+					this.Onaccount_idChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbDanhMuc_tbDienGiai", Storage="_tbDienGiais", ThisKey="danhmuc_id", OtherKey="danhmuc_id")]
 		public EntitySet<tbDienGiai> tbDienGiais
 		{
@@ -1148,157 +1133,6 @@ namespace QuanLyChiTieu
 		{
 			this.SendPropertyChanging();
 			entity.tbDanhMuc = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbThongKe")]
-	public partial class tbThongKe : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _thongke_id;
-		
-		private string _thongke_name;
-		
-		private System.Nullable<int> _chitieuchitiet_id;
-		
-		private EntityRef<tbChiTieuChiTiet> _tbChiTieuChiTiet;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onthongke_idChanging(int value);
-    partial void Onthongke_idChanged();
-    partial void Onthongke_nameChanging(string value);
-    partial void Onthongke_nameChanged();
-    partial void Onchitieuchitiet_idChanging(System.Nullable<int> value);
-    partial void Onchitieuchitiet_idChanged();
-    #endregion
-		
-		public tbThongKe()
-		{
-			this._tbChiTieuChiTiet = default(EntityRef<tbChiTieuChiTiet>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thongke_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int thongke_id
-		{
-			get
-			{
-				return this._thongke_id;
-			}
-			set
-			{
-				if ((this._thongke_id != value))
-				{
-					this.Onthongke_idChanging(value);
-					this.SendPropertyChanging();
-					this._thongke_id = value;
-					this.SendPropertyChanged("thongke_id");
-					this.Onthongke_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thongke_name", DbType="NVarChar(MAX)")]
-		public string thongke_name
-		{
-			get
-			{
-				return this._thongke_name;
-			}
-			set
-			{
-				if ((this._thongke_name != value))
-				{
-					this.Onthongke_nameChanging(value);
-					this.SendPropertyChanging();
-					this._thongke_name = value;
-					this.SendPropertyChanged("thongke_name");
-					this.Onthongke_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chitieuchitiet_id", DbType="Int")]
-		public System.Nullable<int> chitieuchitiet_id
-		{
-			get
-			{
-				return this._chitieuchitiet_id;
-			}
-			set
-			{
-				if ((this._chitieuchitiet_id != value))
-				{
-					if (this._tbChiTieuChiTiet.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onchitieuchitiet_idChanging(value);
-					this.SendPropertyChanging();
-					this._chitieuchitiet_id = value;
-					this.SendPropertyChanged("chitieuchitiet_id");
-					this.Onchitieuchitiet_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbChiTieuChiTiet_tbThongKe", Storage="_tbChiTieuChiTiet", ThisKey="chitieuchitiet_id", OtherKey="chitieuchitiet_id", IsForeignKey=true)]
-		public tbChiTieuChiTiet tbChiTieuChiTiet
-		{
-			get
-			{
-				return this._tbChiTieuChiTiet.Entity;
-			}
-			set
-			{
-				tbChiTieuChiTiet previousValue = this._tbChiTieuChiTiet.Entity;
-				if (((previousValue != value) 
-							|| (this._tbChiTieuChiTiet.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbChiTieuChiTiet.Entity = null;
-						previousValue.tbThongKes.Remove(this);
-					}
-					this._tbChiTieuChiTiet.Entity = value;
-					if ((value != null))
-					{
-						value.tbThongKes.Add(this);
-						this._chitieuchitiet_id = value.chitieuchitiet_id;
-					}
-					else
-					{
-						this._chitieuchitiet_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tbChiTieuChiTiet");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

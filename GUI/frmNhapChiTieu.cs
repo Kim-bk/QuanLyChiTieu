@@ -35,6 +35,7 @@ namespace QuanLyChiTieu
         {
 
             var data = from dm in db.tbDanhMucs
+                       where dm.account_id == _idUser
                        select new
                        {
                            dm.danhmuc_name,
@@ -246,7 +247,7 @@ namespace QuanLyChiTieu
                                join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                                join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
                                where ls.account_id == _idUser
-                               && ls.created_date.Value.Date == DateTime.Now
+                               && ls.created_date.Value.Date == DateTime.Now.Date
                                orderby ls.created_date descending
                                select new
                                {
@@ -268,7 +269,7 @@ namespace QuanLyChiTieu
                                where ls.account_id == _idUser
                                && (dg.diengiai_name.Contains(txtSearch.Text)
                                || dm.danhmuc_name.Contains(txtSearch.Text))
-                               && ls.created_date.Value.Date == DateTime.Now
+                               && ls.created_date.Value.Date == DateTime.Now.Date
                                orderby ls.created_date descending
                                select new
                                {
@@ -436,7 +437,7 @@ namespace QuanLyChiTieu
             {
                 for (int r = 0; r < grvLichSu.RowCount; r++)
                 {
-                    money_paid += Convert.ToInt32(grvLichSu[3, r].Value);
+                    money_paid += Convert.ToInt32(grvLichSu[4, r].Value);
                 }
             }
             catch

@@ -46,6 +46,7 @@ namespace QuanLyChiTieu
         private void nhậpDanhMụcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDanhMuc dm = new frmDanhMuc();
+            dm.Sender(_user);
             nhung(dm);
         }
 
@@ -74,6 +75,7 @@ namespace QuanLyChiTieu
         private void trongThángToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmThongKe thongke = new frmThongKe();
+            thongke.Sender(_user);
             nhung(thongke);
         }
 
@@ -87,6 +89,7 @@ namespace QuanLyChiTieu
         private void theoNgàyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmThongKeTheoNgay tketheongay = new frmThongKeTheoNgay();
+            tketheongay.Sender(_user);
             nhung(tketheongay);
         }
     }

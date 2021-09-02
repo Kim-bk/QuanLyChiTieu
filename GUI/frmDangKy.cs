@@ -46,12 +46,22 @@ namespace QuanLyChiTieu
         {
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
             bool checkIsSpace = false;
+            bool hasDigit = false;
             foreach(char i in txtPass.Text.ToCharArray())
             {
                 if(i == ' ')
                 {
                     checkIsSpace = true;   
                 }
+            }
+
+            foreach (Char c in txtFullname.Text)
+            {
+                if (Char.IsDigit(c))
+                {
+                    hasDigit = true;
+                    break;
+                }    
             }
 
             if (IsEmptyInput())
@@ -61,7 +71,12 @@ namespace QuanLyChiTieu
             }
             else
             {
-                if (!regexItem.IsMatch(txtPass.Text) || checkIsSpace == true)
+                if(hasDigit)
+                {
+                    MessageBox.Show("Họ tên không được có số!");
+                    ResetData();
+                }
+                else if (!regexItem.IsMatch(txtPass.Text) || checkIsSpace == true)
                 {
                     MessageBox.Show("Mật khẩu không được chứa ký tự đặc biệt!");
                     txtRePass.Text = "";

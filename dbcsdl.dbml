@@ -39,7 +39,6 @@
       <Column Name="diengiai_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbThongKes" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbThongKe" />
       <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieu" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieu" IsForeignKey="true" />
       <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbDienGiai" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbDienGiai" IsForeignKey="true" />
     </Type>
@@ -48,15 +47,8 @@
     <Type Name="tbDanhMuc">
       <Column Name="danhmuc_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="danhmuc_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbDanhMuc_tbDienGiai" Member="tbDienGiais" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDienGiai" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbThongKe" Member="tbThongKes">
-    <Type Name="tbThongKe">
-      <Column Name="thongke_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="thongke_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tbChiTieuChiTiet_tbThongKe" Member="tbChiTieuChiTiet" ThisKey="chitieuchitiet_id" OtherKey="chitieuchitiet_id" Type="tbChiTieuChiTiet" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

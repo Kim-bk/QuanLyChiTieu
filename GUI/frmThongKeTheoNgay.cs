@@ -20,10 +20,18 @@ namespace QuanLyChiTieu.GUI
         private static DateTime tungay;
         private static DateTime denngay;
         private static int _idDanhmuc = 0;
+        private static int _idUser;
+        public delegate void SendUser(tbAccount user);
+        public SendUser Sender;
 
         public frmThongKeTheoNgay()
         {
+            Sender = new SendUser(GetUser);
             InitializeComponent();
+        }
+        public void GetUser(tbAccount user)
+        {
+            _idUser = user.account_id;
         }
         private void frmThongKeTheoNgay_Load(object sender, EventArgs e)
         {
@@ -35,36 +43,66 @@ namespace QuanLyChiTieu.GUI
         }
 
    
-        public void LoadData(DateTime tungay, DateTime denngay)
+        public void LoadData(DateTime tungay, DateTime denngay, bool isSearch = false)
         {
             int sum = 0;
-            var data = from dm in db.tbDanhMucs
-                       group dm by dm.danhmuc_id into item
-                       select new
-                       {
-                           item.Key,
-                           tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
-                           chiphi = (from dm in db.tbDanhMucs
-                                     join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
-                                     join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
-                                     join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
-                                     where dg.danhmuc_id == item.Key
-                                     && ct.created_date.Value.Date >= tungay
-                                     && ct.created_date.Value.Date <= denngay
-                                     && ct.account_id == 1 // thay bằng user id hiện tại
-                                     select dg).Sum(dg => dg.diengiai_price)
+            if(!isSearch)
+            {
+                var data = from dm in db.tbDanhMucs
+                           group dm by dm.danhmuc_id into item
+                           select new
+                           {
+                               item.Key,
+                               tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
+                               chiphi = (from dm in db.tbDanhMucs
+                                         join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                         join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                         join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                         where dg.danhmuc_id == item.Key
+                                         && ct.created_date.Value.Date >= tungay
+                                         && ct.created_date.Value.Date <= denngay
+                                         && ct.account_id == _idUser // thay bằng user id hiện tại
+                                         select dg).Sum(dg => dg.diengiai_price)
 
-                       };
+                           };
 
-            grvThongKe.DataSource = data;
-            grvThongKe.Columns[0].Visible = false;
-            grvThongKe.Columns[1].HeaderText = "Tên danh mục";
-            grvThongKe.Columns[2].HeaderText = "Đã chi";
+                grvThongKe.DataSource = data;
+                grvThongKe.Columns[0].Visible = false;
+                grvThongKe.Columns[1].HeaderText = "Tên danh mục";
+                grvThongKe.Columns[2].HeaderText = "Đã chi";
 
-            cThongKe.DataSource = data;
-            cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
-            cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
-            cThongKe.DataBind();
+                cThongKe.DataSource = data;
+                cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
+                cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
+                cThongKe.DataBind();
+            }
+            else
+            {
+                var search = from dm in db.tbDanhMucs
+                             where dm.danhmuc_name.Contains(textBox1.Text)
+                             group dm by dm.danhmuc_id into item
+                             select new
+                             {
+                                 item.Key,
+                                 tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
+                                 chiphi = (from dm in db.tbDanhMucs
+                                           join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                           join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                           join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                           where dg.danhmuc_id == item.Key
+                                           && ct.created_date.Value.Date >= tungay
+                                           && ct.created_date.Value.Date <= denngay
+                                           && ct.account_id == _idUser // thay bằng user id hiện tại
+                                           select dg).Sum(dg => dg.diengiai_price)
+
+                             };
+
+
+                grvThongKe.DataSource = search;
+                grvThongKe.Columns[0].Visible = false;
+                grvThongKe.Columns[1].HeaderText = "Tên danh mục";
+                grvThongKe.Columns[2].HeaderText = "Đã chi";
+            }
 
             //cThongKe.DataSource = null;
 
@@ -97,31 +135,7 @@ namespace QuanLyChiTieu.GUI
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var search = from dm in db.tbDanhMucs
-                         where dm.danhmuc_name.Contains(textBox1.Text)
-                         group dm by dm.danhmuc_id into item
-                         select new
-                         {
-                             item.Key,
-                             tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
-                             chiphi = (from dm in db.tbDanhMucs
-                                       join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
-                                       join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
-                                       join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
-                                       where dg.danhmuc_id == item.Key
-                                       && ct.created_date.Value.Date >= tungay
-                                       && ct.created_date.Value.Date <= denngay
-                                       && ct.account_id == 1 // thay bằng user id hiện tại
-                                       select dg).Sum(dg => dg.diengiai_price)
-
-                         };
-
-
-            grvThongKe.DataSource = search;
-            grvThongKe.Columns[0].Visible = false;
-            grvThongKe.Columns[1].HeaderText = "Tên danh mục";
-            grvThongKe.Columns[2].HeaderText = "Đã chi";
-
+            LoadData(tungay, denngay, true);
         }
      
         private void btnChiTiet_Click(object sender, EventArgs e)
@@ -225,7 +239,7 @@ namespace QuanLyChiTieu.GUI
                                             where dg.danhmuc_id == item.Key
                                             && ct.created_date.Value.Date >= tungay
                                             && ct.created_date.Value.Date <= denngay
-                                            && ct.account_id == 1 // thay bằng user id hiện tại
+                                            && ct.account_id == _idUser// thay bằng user id hiện tại
                                             select dg).Sum(dg => dg.diengiai_price)
                               };
                 foreach (var item in getdata)

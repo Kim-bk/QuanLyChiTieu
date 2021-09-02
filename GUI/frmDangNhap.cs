@@ -89,6 +89,8 @@ namespace QuanLyChiTieu
                 else
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                    txtDangNhap.Text = "";
+                    txtMatKhau.Text = "";
                 }
 
             }

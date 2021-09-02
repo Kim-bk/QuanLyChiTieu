@@ -13,31 +13,58 @@ namespace QuanLyChiTieu.GUI
     public partial class frmDanhMuc : Form
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
-        private static int _id = 0;
+        private static int _idDanhmuc = 0;
+        private static int _idUser;
+        public delegate void SendUser(tbAccount user);
+        public SendUser Sender;
         public frmDanhMuc()
         {
+            Sender = new SendUser(GetUser);
             InitializeComponent();
-            load();
+        }
+        public void GetUser(tbAccount user)
+        {
+            _idUser = user.account_id;
+            LoadData();
         }
 
         public void ResetData()
         {
             txtSearch.Text = "";
-            _id = 0;
+            _idDanhmuc = 0;
         }
 
-        public void load()
+        public void LoadData(bool isSearch = false)
         {
-            var load = from danhmuc in db.tbDanhMucs
-                       orderby danhmuc.danhmuc_id descending
-                       select new
-                       {
-                           danhmuc.danhmuc_id,
-                           danhmuc.danhmuc_name
-                       };
-            grvListDanhMuc.DataSource = load;
-            grvListDanhMuc.Columns[0].Visible = false;
-            grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
+            if (!isSearch)
+            {
+                var load = from danhmuc in db.tbDanhMucs
+                           where danhmuc.account_id == _idUser
+                           orderby danhmuc.danhmuc_id descending
+                           select new
+                           {
+                               danhmuc.danhmuc_id,
+                               danhmuc.danhmuc_name
+                           };
+                grvListDanhMuc.DataSource = load;
+                grvListDanhMuc.Columns[0].Visible = false;
+                grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
+            }
+            else
+            {
+                var search = from dm in db.tbDanhMucs
+                             where dm.danhmuc_name.Contains(txtSearch.Text)
+                             && dm.account_id == _idUser
+                             orderby dm.danhmuc_id descending
+                             select new
+                             {
+                                 dm.danhmuc_id,
+                                 dm.danhmuc_name
+                             };
+                grvListDanhMuc.DataSource = search;
+                grvListDanhMuc.Columns[0].Visible = false;
+                grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
+            }
         }
     
 
@@ -51,7 +78,7 @@ namespace QuanLyChiTieu.GUI
             else
             {
                 bool found = false;
-                foreach (var item in db.tbDanhMucs.ToList())
+                foreach (var item in db.tbDanhMucs.Where(dm => dm.account_id == _idUser).ToList())
                 {
                     if (item.danhmuc_name == text)
                     {
@@ -71,10 +98,12 @@ namespace QuanLyChiTieu.GUI
                 {
                     tbDanhMuc add = new tbDanhMuc();
                     add.danhmuc_name = text;
+                    add.account_id = _idUser;
                     db.tbDanhMucs.InsertOnSubmit(add);
                     db.SubmitChanges();
 
                     var load = from danhmuc in db.tbDanhMucs
+                               where danhmuc.account_id == _idUser
                                orderby danhmuc.danhmuc_id descending
                                select new
                                {
@@ -93,7 +122,7 @@ namespace QuanLyChiTieu.GUI
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            if (_id != 0)
+            if (_idDanhmuc != 0)
             {
                 string message = "Bạn có muốn xóa danh mục này";
                 string title = "Xóa";
@@ -101,21 +130,14 @@ namespace QuanLyChiTieu.GUI
                 DialogResult result = MessageBox.Show(message, title, buttons);
                 if (result == DialogResult.Yes)
                 {
-                    var delete = (from dm in db.tbDanhMucs where dm.danhmuc_id == _id select dm).FirstOrDefault();
+                    var delete = (from dm in db.tbDanhMucs 
+                                  where dm.danhmuc_id == _idDanhmuc 
+                                  && dm.account_id == _idUser 
+                                  select dm).FirstOrDefault();
                     db.tbDanhMucs.DeleteOnSubmit(delete);
                     db.SubmitChanges();
 
-                    var load = from danhmuc in db.tbDanhMucs
-                               orderby danhmuc.danhmuc_id descending
-                               select new
-                               {
-                                   danhmuc.danhmuc_id,
-                                   danhmuc.danhmuc_name
-                               };
-
-                    grvListDanhMuc.DataSource = load;
-                    grvListDanhMuc.Columns[0].Visible = false;
-                    grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
+                    LoadData();
                     ResetData();
                 }
                 else
@@ -131,31 +153,13 @@ namespace QuanLyChiTieu.GUI
 
         private void grvListDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            _id = Convert.ToInt32(grvListDanhMuc.CurrentRow.Cells[0].Value);
+            _idDanhmuc = Convert.ToInt32(grvListDanhMuc.CurrentRow.Cells[0].Value);
            // txtSearch.Text = (grvListDanhMuc.CurrentRow.Cells[1].Value).ToString();
         }
 
-
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-
-        }
-
- 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            var search = from dm in db.tbDanhMucs
-                         where dm.danhmuc_name.Contains(txtSearch.Text)
-                         orderby dm.danhmuc_id descending
-                         select new
-                         {
-                             dm.danhmuc_id,
-                             dm.danhmuc_name
-                         };
-            grvListDanhMuc.DataSource = search;
-            grvListDanhMuc.Columns[1].HeaderText = "Tên danh mục";
+            LoadData(true);
         }
-
     }
 }
