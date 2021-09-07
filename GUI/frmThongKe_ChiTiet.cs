@@ -16,6 +16,7 @@ namespace QuanLyChiTieu.GUI
         dbcsdlDataContext db = new dbcsdlDataContext();
         public delegate void SendInfo(int id, int month, DateTime? tungay, DateTime? denngay);
         public SendInfo Sender;
+        CultureInfo culture1 = new CultureInfo("en-US");
         public frmThongKe_ChiTiet()
         {
             InitializeComponent();
@@ -48,7 +49,8 @@ namespace QuanLyChiTieu.GUI
                                ls.chitieu_id,
                                ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                                dg.diengiai_name,
-                               dg.diengiai_price,
+                               tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                               dg.diengiai_note
 
                            };
                 grvThongKeChiTiet.DataSource = data;
@@ -67,7 +69,8 @@ namespace QuanLyChiTieu.GUI
                                ls.chitieu_id,
                                ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                                dg.diengiai_name,
-                               dg.diengiai_price,
+                               tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                               dg.diengiai_note
 
                            };
                 grvThongKeChiTiet.DataSource = data;
@@ -76,6 +79,7 @@ namespace QuanLyChiTieu.GUI
             grvThongKeChiTiet.Columns[1].HeaderText = "Ngày tạo";
             grvThongKeChiTiet.Columns[2].HeaderText = "Diễn giải";
             grvThongKeChiTiet.Columns[3].HeaderText = "Chi phí";
+            grvThongKeChiTiet.Columns[4].HeaderText = "Ghi chú";
         }
 
         private void btnClose_Click(object sender, EventArgs e)

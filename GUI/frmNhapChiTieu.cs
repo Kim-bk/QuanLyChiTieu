@@ -158,8 +158,6 @@ namespace QuanLyChiTieu
 
         }
 
-       
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             string message = "Bạn có muốn cập nhật chi tiêu này?";
