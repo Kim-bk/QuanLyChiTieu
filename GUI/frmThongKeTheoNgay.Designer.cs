@@ -91,9 +91,9 @@ namespace QuanLyChiTieu.GUI
             this.pnlBieuDo.BackColor = System.Drawing.Color.White;
             this.pnlBieuDo.Controls.Add(this.label5);
             this.pnlBieuDo.Controls.Add(this.cThongKe);
-            this.pnlBieuDo.Location = new System.Drawing.Point(1000, 192);
+            this.pnlBieuDo.Location = new System.Drawing.Point(920, 25);
             this.pnlBieuDo.Name = "pnlBieuDo";
-            this.pnlBieuDo.Size = new System.Drawing.Size(838, 638);
+            this.pnlBieuDo.Size = new System.Drawing.Size(918, 805);
             this.pnlBieuDo.TabIndex = 5;
             // 
             // label5
@@ -120,7 +120,7 @@ namespace QuanLyChiTieu.GUI
             series1.Legend = "Legend1";
             series1.Name = "Chi Tiêu";
             this.cThongKe.Series.Add(series1);
-            this.cThongKe.Size = new System.Drawing.Size(819, 535);
+            this.cThongKe.Size = new System.Drawing.Size(819, 627);
             this.cThongKe.TabIndex = 1;
             this.cThongKe.Text = "Chi tiêu";
             // 

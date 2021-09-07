@@ -56,7 +56,7 @@ namespace QuanLyChiTieu
 
         public void loadData(int month, bool isSearch =  false)
         {
-            lblThongKe.Text = "";
+            lblNew.Text = "";
             int sum = 0;
 
             try
@@ -122,21 +122,36 @@ namespace QuanLyChiTieu
                     grvThongKe.Columns[2].HeaderText = "Đã chi";
                 }
 
-                int pos;
+                string temp = "";
                 for (int i = 0; i < grvThongKe.RowCount; i++)
                 {
-                    pos = grvThongKe[2, i].Value.ToString().IndexOf('.');
-
-                    sum += Convert.ToInt32((grvThongKe[2, i].Value.ToString()).Remove(pos, 1));
+                    temp = DeleteDotInString(Convert.ToString(grvThongKe[2, i].Value));
+                    sum += Convert.ToInt32(temp);
                 }
                 label3.Text = sum.ToString("c", culture);
-                lblThongKe.Text += "THỐNG KÊ THÁNG " + month.ToString() + "/" + DateTime.Now.Year.ToString();
+                lblNew.Text += "THỐNG KÊ THÁNG " + month.ToString() + "/" + DateTime.Now.Year.ToString();
             }
             catch(Exception)
             {
                 ;
             }
 
+        }
+
+        public string DeleteDotInString(string s)
+        {
+            string rs = s;
+            int pos = 0;
+            foreach (char c in s.ToArray())
+            {
+                if (c.Equals('.'))
+                {
+                    rs = rs.Remove(pos, 1);
+                    pos--;
+                }
+                pos++;
+            }
+            return rs;
         }
 
 

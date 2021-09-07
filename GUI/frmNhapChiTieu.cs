@@ -417,13 +417,14 @@ namespace QuanLyChiTieu
 
         public string DeleteDotInString(string s)
         {
-            string rs = "";
+            string rs = s;
             int pos = 0;
             foreach (char c in s.ToArray())
             {
                 if (c.Equals('.'))
                 {
-                    rs = s.Remove(pos, 1);
+                    rs = rs.Remove(pos, 1);
+                    pos--;
                 }
                 pos++;
             }
