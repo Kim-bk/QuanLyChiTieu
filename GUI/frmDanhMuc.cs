@@ -156,10 +156,16 @@ namespace QuanLyChiTieu.GUI
             _idDanhmuc = Convert.ToInt32(grvListDanhMuc.CurrentRow.Cells[0].Value);
            // txtSearch.Text = (grvListDanhMuc.CurrentRow.Cells[1].Value).ToString();
         }
+     
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData(true);
+        }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadData(true);
+            if(txtSearch.Text == "")
+                LoadData();
         }
     }
 }

@@ -57,6 +57,7 @@ namespace QuanLyChiTieu
             this.label6 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlNhapChiTieu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvLichSu)).BeginInit();
@@ -65,6 +66,7 @@ namespace QuanLyChiTieu
             // pnlNhapChiTieu
             // 
             this.pnlNhapChiTieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnlNhapChiTieu.Controls.Add(this.btnRefresh);
             this.pnlNhapChiTieu.Controls.Add(this.label8);
             this.pnlNhapChiTieu.Controls.Add(this.txtNote);
             this.pnlNhapChiTieu.Controls.Add(this.btnXoa);
@@ -336,6 +338,18 @@ namespace QuanLyChiTieu
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.Location = new System.Drawing.Point(672, 133);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 58);
+            this.btnRefresh.TabIndex = 15;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmNhapChiTieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -384,5 +398,6 @@ namespace QuanLyChiTieu
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

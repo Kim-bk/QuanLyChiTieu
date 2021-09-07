@@ -501,5 +501,15 @@ namespace QuanLyChiTieu
                 MessageBox.Show("Lỗi!");
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            cbbOptions.Text = "Tất cả";
+            Reset();
+            loadLichSu();
+            btnThem.Enabled = true;
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+        }
     }
 }
