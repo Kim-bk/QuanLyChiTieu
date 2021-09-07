@@ -79,7 +79,7 @@ namespace QuanLyChiTieu.GUI
             grvThongKeChiTiet.Columns[1].HeaderText = "Ngày tạo";
             grvThongKeChiTiet.Columns[2].HeaderText = "Diễn giải";
             grvThongKeChiTiet.Columns[3].HeaderText = "Chi phí";
-            grvThongKeChiTiet.Columns[4].HeaderText = "Ghi chú";
+            grvThongKeChiTiet.Columns[4].HeaderText = "Ghi chú ";
         }
 
         private void btnClose_Click(object sender, EventArgs e)

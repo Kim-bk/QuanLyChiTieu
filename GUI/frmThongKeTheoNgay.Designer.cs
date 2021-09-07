@@ -110,6 +110,8 @@ namespace QuanLyChiTieu.GUI
             // 
             chartArea1.Name = "ChartArea1";
             this.cThongKe.ChartAreas.Add(chartArea1);
+            legend1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend1.IsTextAutoFit = false;
             legend1.Name = "Legend1";
             this.cThongKe.Legends.Add(legend1);
             this.cThongKe.Location = new System.Drawing.Point(16, 72);
@@ -161,7 +163,7 @@ namespace QuanLyChiTieu.GUI
             this.textBox1.Location = new System.Drawing.Point(33, 132);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(485, 40);
+            this.textBox1.Size = new System.Drawing.Size(635, 40);
             this.textBox1.TabIndex = 10;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 

@@ -16,6 +16,7 @@ namespace QuanLyChiTieu.GUI
     public partial class frmThongKeTheoNgay : Form
     {
         CultureInfo culture = new CultureInfo("vi-VN");
+        CultureInfo culture1 = new CultureInfo("en-US");
         dbcsdlDataContext db = new dbcsdlDataContext();
         private static DateTime tungay;
         private static DateTime denngay;
@@ -42,7 +43,31 @@ namespace QuanLyChiTieu.GUI
             btnChiTiet.Visible = false;
         }
 
-   
+        public void LoadChartPie()
+        {
+            var data = from dm in db.tbDanhMucs
+                       where dm.account_id == _idUser
+                       group dm by dm.danhmuc_id into item
+                       select new
+                       {
+                           item.Key,
+                           tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
+                           chiphi = (from dm in db.tbDanhMucs
+                                     join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                     join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                     join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                     where dg.danhmuc_id == item.Key
+                                      && ct.created_date.Value.Date >= tungay
+                                      && ct.created_date.Value.Date <= denngay
+                                     && ct.account_id == _idUser // thay bằng user id hiện tại
+                                     select dg).Sum(dg => dg.diengiai_price)
+                       };
+            cThongKe.DataSource = data;
+            cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
+            cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
+            cThongKe.DataBind();
+        }
+
         public void LoadData(DateTime tungay, DateTime denngay, bool isSearch = false)
         {
             int sum = 0;
@@ -55,15 +80,16 @@ namespace QuanLyChiTieu.GUI
                            {
                                item.Key,
                                tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
-                               chiphi = (from dm in db.tbDanhMucs
-                                         join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
-                                         join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
-                                         join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
-                                         where dg.danhmuc_id == item.Key
-                                         && ct.created_date.Value.Date >= tungay
-                                         && ct.created_date.Value.Date <= denngay
-                                         && ct.account_id == _idUser // thay bằng user id hiện tại
-                                         select dg).Sum(dg => dg.diengiai_price)
+                               chiphi = string.Format(culture1, "{0:N0}",
+                                       Convert.ToDecimal((from dm in db.tbDanhMucs
+                                                       join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                                       join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                                       join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                                       where dg.danhmuc_id == item.Key
+                                                       && ct.created_date.Value.Date >= tungay
+                                                       && ct.created_date.Value.Date <= denngay
+                                                       && ct.account_id == _idUser // thay bằng user id hiện tại
+                                                       select dg).Sum(dg => dg.diengiai_price) ?? 0)).Replace(',', '.')
 
                            };
 
@@ -72,10 +98,6 @@ namespace QuanLyChiTieu.GUI
                 grvThongKe.Columns[1].HeaderText = "Tên danh mục";
                 grvThongKe.Columns[2].HeaderText = "Đã chi";
 
-                cThongKe.DataSource = data;
-                cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
-                cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
-                cThongKe.DataBind();
             }
             else
             {
@@ -87,30 +109,30 @@ namespace QuanLyChiTieu.GUI
                              {
                                  item.Key,
                                  tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
-                                 chiphi = (from dm in db.tbDanhMucs
-                                           join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
-                                           join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
-                                           join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
-                                           where dg.danhmuc_id == item.Key
-                                           && ct.created_date.Value.Date >= tungay
-                                           && ct.created_date.Value.Date <= denngay
-                                           && ct.account_id == _idUser // thay bằng user id hiện tại
-                                           select dg).Sum(dg => dg.diengiai_price)
-
+                                 chiphi = string.Format(culture1, "{0:N0}",
+                                          Convert.ToDecimal((from dm in db.tbDanhMucs
+                                                          join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                                          join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                                          join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                                          where dg.danhmuc_id == item.Key
+                                                          && ct.created_date.Value.Date >= tungay
+                                                          && ct.created_date.Value.Date <= denngay
+                                                          && ct.account_id == _idUser // thay bằng user id hiện tại
+                                                          select dg).Sum(dg => dg.diengiai_price) ?? 0)).Replace(',', '.')
                              };
-
-
                 grvThongKe.DataSource = search;
                 grvThongKe.Columns[0].Visible = false;
                 grvThongKe.Columns[1].HeaderText = "Tên danh mục";
                 grvThongKe.Columns[2].HeaderText = "Đã chi";
             }
 
-            //cThongKe.DataSource = null;
+            LoadChartPie();
 
-            for (int i = 0; i < grvThongKe.Rows.Count; i++)
+            string temp = "";
+            for (int i = 0; i < grvThongKe.RowCount; i++)
             {
-                sum += Convert.ToInt32(grvThongKe.Rows[i].Cells[2].Value);
+                temp = DeleteDotInString(Convert.ToString(grvThongKe[2, i].Value));
+                sum += Convert.ToInt32(temp);
             }
             textBox1.Enabled = true;
             btnXuatFile.Visible = true;
@@ -118,6 +140,23 @@ namespace QuanLyChiTieu.GUI
             label4.Visible = true;
             lblTong.Text = sum.ToString("c", culture);
         }
+
+        public string DeleteDotInString(string s)
+        {
+            string rs = s;
+            int pos = 0;
+            foreach (char c in s.ToArray())
+            {
+                if (c.Equals('.'))
+                {
+                    rs = rs.Remove(pos, 1);
+                    pos--;
+                }
+                pos++;
+            }
+            return rs;
+        }
+
 
         private void btnXem_Click(object sender, EventArgs e)
         {

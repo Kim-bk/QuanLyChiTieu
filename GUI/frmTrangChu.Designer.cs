@@ -154,7 +154,7 @@ namespace QuanLyChiTieu
             this.lblName.BackColor = System.Drawing.Color.White;
             this.lblName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
             this.lblName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblName.Location = new System.Drawing.Point(1373, 9);
+            this.lblName.Location = new System.Drawing.Point(1373, 16);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(97, 36);
             this.lblName.TabIndex = 8;

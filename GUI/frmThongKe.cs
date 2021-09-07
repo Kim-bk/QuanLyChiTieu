@@ -18,13 +18,14 @@ namespace QuanLyChiTieu
     {
         dbcsdlDataContext db = new dbcsdlDataContext();
         CultureInfo culture = new CultureInfo("vi-VN");
+        CultureInfo culture1 = new CultureInfo("en-US");
         private static int month;
         private static int _idDanhmuc = 0;
         private static int _idUser;
         public delegate void SendUser(tbAccount user);
         public SendUser Sender;
         int current_month = DateTime.Now.Month;
-        CultureInfo culture1 = new CultureInfo("en-US");
+   
 
         public frmThongKe()
         {
@@ -33,12 +34,38 @@ namespace QuanLyChiTieu
             month = current_month;
             InitializeComponent();
             LoadCombobox();
+           
          
         }
         public void GetUser(tbAccount user)
         {
             _idUser = user.account_id;
             loadData(month);
+        }
+
+        public void LoadChartPie()
+        {
+            var data = from dm in db.tbDanhMucs
+                       where dm.account_id == _idUser
+                       group dm by dm.danhmuc_id into item
+                       select new
+                       {
+                           item.Key,
+                           tendanhmuc = (from dm in db.tbDanhMucs where dm.danhmuc_id == item.Key select dm).FirstOrDefault().danhmuc_name,
+                           chiphi = (from dm in db.tbDanhMucs
+                                              join dg in db.tbDienGiais on dm.danhmuc_id equals dg.danhmuc_id
+                                              join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                                              join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                                              where dg.danhmuc_id == item.Key
+                                              && ct.created_date.Value.Month == month
+                                              && ct.created_date.Value.Year == DateTime.Now.Year
+                                              && ct.account_id == _idUser 
+                                              select dg).Sum(dg => dg.diengiai_price)
+                       };
+            cThongKe.DataSource = data;
+            cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
+            cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
+            cThongKe.DataBind();
         }
 
         public void LoadCombobox()
@@ -80,19 +107,13 @@ namespace QuanLyChiTieu
                                                       && ct.created_date.Value.Year == DateTime.Now.Year
                                                       && ct.account_id == _idUser // thay bằng user id hiện tại
                                                   select dg).Sum(dg => dg.diengiai_price) ?? 0))).Replace(',', '.')
-
-
-
                                };
                     grvThongKe.DataSource = data;
                     grvThongKe.Columns[0].Visible = false;
                     grvThongKe.Columns[1].HeaderText = "Tên danh mục";
                     grvThongKe.Columns[2].HeaderText = "Đã chi";
 
-                    cThongKe.DataSource = data;
-                    cThongKe.Series["Chi Tiêu"].YValueMembers = "chiphi";
-                    cThongKe.Series["Chi Tiêu"].XValueMember = "tendanhmuc";
-                    cThongKe.DataBind();
+                  
                 }
                 else
                 {
@@ -122,6 +143,8 @@ namespace QuanLyChiTieu
                     grvThongKe.Columns[2].HeaderText = "Đã chi";
                 }
 
+                LoadChartPie();
+
                 string temp = "";
                 for (int i = 0; i < grvThongKe.RowCount; i++)
                 {
@@ -130,6 +153,7 @@ namespace QuanLyChiTieu
                 }
                 label3.Text = sum.ToString("c", culture);
                 lblNew.Text += "THỐNG KÊ THÁNG " + month.ToString() + "/" + DateTime.Now.Year.ToString();
+                
             }
             catch(Exception)
             {
