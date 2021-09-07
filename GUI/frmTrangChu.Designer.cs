@@ -55,7 +55,6 @@ namespace QuanLyChiTieu
             // menuStrip2
             // 
             this.menuStrip2.BackColor = System.Drawing.Color.White;
-            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnTrịHệThốngToolStripMenuItem,
@@ -125,14 +124,14 @@ namespace QuanLyChiTieu
             // theoNgàyToolStripMenuItem
             // 
             this.theoNgàyToolStripMenuItem.Name = "theoNgàyToolStripMenuItem";
-            this.theoNgàyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.theoNgàyToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.theoNgàyToolStripMenuItem.Text = "Theo ngày";
             this.theoNgàyToolStripMenuItem.Click += new System.EventHandler(this.theoNgàyToolStripMenuItem_Click);
             // 
             // trongThángToolStripMenuItem
             // 
             this.trongThángToolStripMenuItem.Name = "trongThángToolStripMenuItem";
-            this.trongThángToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.trongThángToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.trongThángToolStripMenuItem.Text = "Theo tháng";
             this.trongThángToolStripMenuItem.Click += new System.EventHandler(this.trongThángToolStripMenuItem_Click);
             // 
@@ -154,6 +153,7 @@ namespace QuanLyChiTieu
             this.lblName.AutoSize = true;
             this.lblName.BackColor = System.Drawing.Color.White;
             this.lblName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.lblName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblName.Location = new System.Drawing.Point(1373, 9);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(97, 36);

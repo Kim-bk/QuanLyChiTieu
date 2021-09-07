@@ -2,6 +2,8 @@
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace QuanLyChiTieu
@@ -20,10 +22,12 @@ namespace QuanLyChiTieu
         //t7 trong tuần hiện tại
         DateTime saturday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Saturday);
         CultureInfo culture = new CultureInfo("vi-VN");
+        CultureInfo culture1 = new CultureInfo("en-US");
         public frmNhapChiTieu()
         {
             InitializeComponent();
             Sender = new SendUser(GetUser);
+
         }
 
         public void GetUser(tbAccount user)
@@ -48,6 +52,7 @@ namespace QuanLyChiTieu
         {
             txtDienGiai.Text = "";
             txtChi.Text = "";
+            txtNote.Text = "";
             loaddata();
         }
        
@@ -74,7 +79,8 @@ namespace QuanLyChiTieu
                     tbDienGiai diengiai = new tbDienGiai();
                     diengiai.diengiai_name = txtDienGiai.Text;
                     diengiai.danhmuc_id = getIdCbb;
-                    diengiai.diengiai_price = Convert.ToInt32(txtChi.Text);
+                    diengiai.diengiai_price = Convert.ToInt32(DeleteDotInString(txtChi.Text));
+                    diengiai.diengiai_note = txtNote.Text;
                     db.tbDienGiais.InsertOnSubmit(diengiai);
                     db.SubmitChanges();
 
@@ -103,6 +109,7 @@ namespace QuanLyChiTieu
             loadLichSu();
             btnXoa.Enabled = false;
             btnSua.Enabled = false;
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -151,45 +158,12 @@ namespace QuanLyChiTieu
 
         }
 
-        private void grvLichSu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                id_ChiTieu = Convert.ToInt32(grvLichSu.CurrentRow.Cells[0].Value);
-
-                var getData = (from dg in db.tbDienGiais
-                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
-                               join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
-                               join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
-                               where ct.chitieu_id == id_ChiTieu
-                               select new
-                               {
-                                   dg.diengiai_name,
-                                   dg.diengiai_price,
-                                   ct.created_date,
-                                   dm.danhmuc_name,
-                               }).FirstOrDefault();
-
-                //load dữ liệu lên
-                txtDienGiai.Text = getData.diengiai_name;
-                txtChi.Text = getData.diengiai_price.ToString();
-                cbbDanhMuc.Text = getData.danhmuc_name;
-                dtepickerNgayNhap.Value = Convert.ToDateTime(getData.created_date);
-
-                btnSua.Enabled = true;
-                btnXoa.Enabled = true;
-                btnThem.Enabled = false;
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Lỗi!");
-            }
-        }
+       
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             string message = "Bạn có muốn cập nhật chi tiêu này?";
-            string title = "Cạp nhật";
+            string title = "Cập nhật";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
 
@@ -216,7 +190,8 @@ namespace QuanLyChiTieu
                 diengiai.danhmuc_id = getIdCbb;
                 chitieu.created_date = Convert.ToDateTime(dtepickerNgayNhap.Value);
                 diengiai.diengiai_name = txtDienGiai.Text;
-                diengiai.diengiai_price = Convert.ToInt32(txtChi.Text);
+                diengiai.diengiai_price = Convert.ToInt32(DeleteDotInString(txtChi.Text));
+                diengiai.diengiai_note = txtNote.Text;
                 db.SubmitChanges();
 
                 MessageBox.Show("Cập nhật thành công!");
@@ -253,9 +228,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
                     grvLichSu.DataSource = data;
@@ -267,17 +242,16 @@ namespace QuanLyChiTieu
                                join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                                join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
                                where ls.account_id == _idUser
-                               && (dg.diengiai_name.Contains(txtSearch.Text)
-                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && dg.diengiai_name.Contains(txtSearch.Text)
                                && ls.created_date.Value.Date == DateTime.Now.Date
                                orderby ls.created_date descending
                                select new
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
                     grvLichSu.DataSource = data;
@@ -300,9 +274,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
 
@@ -315,8 +289,7 @@ namespace QuanLyChiTieu
                                join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                                join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
                                where ls.account_id == _idUser
-                               && (dg.diengiai_name.Contains(txtSearch.Text)
-                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && dg.diengiai_name.Contains(txtSearch.Text)
                                && ls.created_date.Value.Month == DateTime.Now.Month
                                && ls.created_date.Value.Year == DateTime.Now.Year
                                orderby ls.created_date descending
@@ -324,9 +297,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
                     grvLichSu.DataSource = data;
@@ -348,9 +321,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
 
@@ -363,8 +336,7 @@ namespace QuanLyChiTieu
                                join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                                join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
                                where ls.account_id == _idUser
-                               && (dg.diengiai_name.Contains(txtSearch.Text)
-                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && dg.diengiai_name.Contains(txtSearch.Text)
                                && ls.created_date >= monday
                                && ls.created_date <= saturday
                                orderby ls.created_date descending
@@ -372,9 +344,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
 
@@ -395,9 +367,9 @@ namespace QuanLyChiTieu
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
 
@@ -410,46 +382,124 @@ namespace QuanLyChiTieu
                                join dg in db.tbDienGiais on ctct.diengiai_id equals dg.diengiai_id
                                join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
                                where ls.account_id == _idUser
-                               && (dg.diengiai_name.Contains(txtSearch.Text)
-                               || dm.danhmuc_name.Contains(txtSearch.Text))
+                               && dg.diengiai_name.Contains(txtSearch.Text)
                                orderby ls.created_date descending
                                select new
                                {
                                    ls.chitieu_id,
                                    ngaytao = Convert.ToDateTime(ls.created_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                   dm.danhmuc_name,
                                    dg.diengiai_name,
-                                   dg.diengiai_price,
+                                   tien = (string.Format(culture1, "{0:N0}", Convert.ToDecimal(dg.diengiai_price))).Replace(',', '.'),
+                                   dg.diengiai_note
 
                                };
                     grvLichSu.DataSource = data;
                 }
             }
-            grvLichSu.Columns[3].Width = 150;
-            grvLichSu.Columns[4].Width = 50;
+            grvLichSu.Columns[1].Width = 100;
+            grvLichSu.Columns[2].Width = 150;
+            grvLichSu.Columns[3].Width = 80;
+            grvLichSu.Columns[4].Width = 100;
             grvLichSu.Columns[0].Visible = false;
             grvLichSu.Columns[1].HeaderText = "Ngày tạo";
-            grvLichSu.Columns[2].HeaderText = "Danh mục";
-            grvLichSu.Columns[3].HeaderText = "Diễn giải";
-            grvLichSu.Columns[4].HeaderText = "Chi phí";
+            grvLichSu.Columns[2].HeaderText = "Diễn giải";
+            grvLichSu.Columns[3].HeaderText = "Chi phí";
+            grvLichSu.Columns[4].HeaderText = "Ghi chú";
 
-            try
+            string temp = "";
+            for (int r = 0; r < grvLichSu.RowCount; r++)
             {
-                for (int r = 0; r < grvLichSu.RowCount; r++)
-                {
-                    money_paid += Convert.ToInt32(grvLichSu[4, r].Value);
-                }
-            }
-            catch
-            {
-                ;
+                temp = DeleteDotInString(Convert.ToString(grvLichSu[3, r].Value));
+                money_paid += Convert.ToInt32(temp);
             }
             lblPaid.Text = money_paid.ToString("c", culture);
+        }
+
+        public string DeleteDotInString(string s)
+        {
+            string rs = "";
+            int pos = 0;
+            foreach (char c in s.ToArray())
+            {
+                if (c.Equals('.'))
+                {
+                    rs = s.Remove(pos, 1);
+                }
+                pos++;
+            }
+            return rs;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             loadLichSu(options, true);
+        }
+
+        public string FormatMoney(object money)
+        {
+            string str = money.ToString();
+            string pattern = @"(?<a>\d*)(?<b>\d{3})*";
+            Match m = Regex.Match(str, pattern, RegexOptions.RightToLeft);
+            StringBuilder sb = new StringBuilder();
+            foreach (Capture i in m.Groups["b"].Captures)
+            {
+                sb.Insert(0, "." + i.Value);
+            }
+            sb.Insert(0, m.Groups["a"].Value);
+            return sb.ToString().Trim('.');
+        }
+
+        private void txtChi_TextChanged(object sender, EventArgs e)
+        {
+            string str = txtChi.Text;
+            int start = txtChi.Text.Length - txtChi.SelectionStart;
+            str = str.Replace(".", "");
+            txtChi.Text = FormatMoney(str);
+            txtChi.SelectionStart = -start + txtChi.Text.Length;
+        }
+
+     
+        private void txtChi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        private void grvLichSu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                id_ChiTieu = Convert.ToInt32(grvLichSu.CurrentRow.Cells[0].Value);
+
+                var getData = (from dg in db.tbDienGiais
+                               join dm in db.tbDanhMucs on dg.danhmuc_id equals dm.danhmuc_id
+                               join ctct in db.tbChiTieuChiTiets on dg.diengiai_id equals ctct.diengiai_id
+                               join ct in db.tbChiTieus on ctct.chitieu_id equals ct.chitieu_id
+                               where ct.chitieu_id == id_ChiTieu
+                               select new
+                               {
+                                   dg.diengiai_name,
+                                   dg.diengiai_price,
+                                   ct.created_date,
+                                   dg.diengiai_note,
+                                   dm.danhmuc_name,
+                               }).FirstOrDefault();
+
+                //load dữ liệu lên
+                txtDienGiai.Text = getData.diengiai_name;
+                txtChi.Text = getData.diengiai_price.ToString();
+                cbbDanhMuc.Text = getData.danhmuc_name;
+                dtepickerNgayNhap.Value = Convert.ToDateTime(getData.created_date);
+                txtNote.Text = getData.diengiai_note;
+
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                btnThem.Enabled = false;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi!");
+            }
         }
     }
 }

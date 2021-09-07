@@ -49,6 +49,7 @@ namespace QuanLyChiTieu.GUI
             if(!isSearch)
             {
                 var data = from dm in db.tbDanhMucs
+                           where dm.account_id == _idUser
                            group dm by dm.danhmuc_id into item
                            select new
                            {
@@ -80,6 +81,7 @@ namespace QuanLyChiTieu.GUI
             {
                 var search = from dm in db.tbDanhMucs
                              where dm.danhmuc_name.Contains(textBox1.Text)
+                             && dm.account_id == _idUser
                              group dm by dm.danhmuc_id into item
                              select new
                              {
@@ -227,6 +229,7 @@ namespace QuanLyChiTieu.GUI
                 row = 3;//dữ liệu xuất bắt đầu từ dòng số 4 trong file Excel (khai báo 3 để vào vòng lặp nó ++ thành 4)
 
                 var getdata = from dm in db.tbDanhMucs
+                              where dm.account_id == _idUser
                               group dm by dm.danhmuc_id into item
                               select new
                               {

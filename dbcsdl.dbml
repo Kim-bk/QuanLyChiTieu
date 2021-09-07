@@ -18,6 +18,7 @@
       <Column Name="diengiai_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="danhmuc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="diengiai_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="diengiai_note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbChiTieuChiTiet" />
       <Association Name="tbDanhMuc_tbDienGiai" Member="tbDanhMuc" ThisKey="danhmuc_id" OtherKey="danhmuc_id" Type="tbDanhMuc" IsForeignKey="true" />
     </Type>
@@ -27,7 +28,6 @@
       <Column Name="chitieu_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="created_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="total_cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieuChiTiets" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieuChiTiet" />
       <Association Name="tbAccount_tbChiTieu" Member="tbAccount" ThisKey="account_id" OtherKey="account_id" Type="tbAccount" IsForeignKey="true" />
     </Type>
@@ -37,8 +37,6 @@
       <Column Name="chitieuchitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="chitieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="diengiai_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbChiTieu_tbChiTieuChiTiet" Member="tbChiTieu" ThisKey="chitieu_id" OtherKey="chitieu_id" Type="tbChiTieu" IsForeignKey="true" />
       <Association Name="tbDienGiai_tbChiTieuChiTiet" Member="tbDienGiai" ThisKey="diengiai_id" OtherKey="diengiai_id" Type="tbDienGiai" IsForeignKey="true" />
     </Type>

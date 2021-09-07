@@ -366,6 +366,8 @@ namespace QuanLyChiTieu
 		
 		private System.Nullable<long> _diengiai_price;
 		
+		private string _diengiai_note;
+		
 		private EntitySet<tbChiTieuChiTiet> _tbChiTieuChiTiets;
 		
 		private EntityRef<tbDanhMuc> _tbDanhMuc;
@@ -382,6 +384,8 @@ namespace QuanLyChiTieu
     partial void Ondanhmuc_idChanged();
     partial void Ondiengiai_priceChanging(System.Nullable<long> value);
     partial void Ondiengiai_priceChanged();
+    partial void Ondiengiai_noteChanging(string value);
+    partial void Ondiengiai_noteChanged();
     #endregion
 		
 		public tbDienGiai()
@@ -471,6 +475,26 @@ namespace QuanLyChiTieu
 					this._diengiai_price = value;
 					this.SendPropertyChanged("diengiai_price");
 					this.Ondiengiai_priceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_diengiai_note", DbType="NVarChar(MAX)")]
+		public string diengiai_note
+		{
+			get
+			{
+				return this._diengiai_note;
+			}
+			set
+			{
+				if ((this._diengiai_note != value))
+				{
+					this.Ondiengiai_noteChanging(value);
+					this.SendPropertyChanging();
+					this._diengiai_note = value;
+					this.SendPropertyChanged("diengiai_note");
+					this.Ondiengiai_noteChanged();
 				}
 			}
 		}
@@ -567,8 +591,6 @@ namespace QuanLyChiTieu
 		
 		private System.Nullable<System.DateTime> _created_date;
 		
-		private System.Nullable<int> _total_cost;
-		
 		private EntitySet<tbChiTieuChiTiet> _tbChiTieuChiTiets;
 		
 		private EntityRef<tbAccount> _tbAccount;
@@ -583,8 +605,6 @@ namespace QuanLyChiTieu
     partial void Onaccount_idChanged();
     partial void Oncreated_dateChanging(System.Nullable<System.DateTime> value);
     partial void Oncreated_dateChanged();
-    partial void Ontotal_costChanging(System.Nullable<int> value);
-    partial void Ontotal_costChanged();
     #endregion
 		
 		public tbChiTieu()
@@ -654,26 +674,6 @@ namespace QuanLyChiTieu
 					this._created_date = value;
 					this.SendPropertyChanged("created_date");
 					this.Oncreated_dateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cost", DbType="Int")]
-		public System.Nullable<int> total_cost
-		{
-			get
-			{
-				return this._total_cost;
-			}
-			set
-			{
-				if ((this._total_cost != value))
-				{
-					this.Ontotal_costChanging(value);
-					this.SendPropertyChanging();
-					this._total_cost = value;
-					this.SendPropertyChanged("total_cost");
-					this.Ontotal_costChanged();
 				}
 			}
 		}
@@ -770,10 +770,6 @@ namespace QuanLyChiTieu
 		
 		private System.Nullable<int> _diengiai_id;
 		
-		private System.Nullable<double> _price;
-		
-		private System.Nullable<int> _soluong;
-		
 		private EntityRef<tbChiTieu> _tbChiTieu;
 		
 		private EntityRef<tbDienGiai> _tbDienGiai;
@@ -788,10 +784,6 @@ namespace QuanLyChiTieu
     partial void Onchitieu_idChanged();
     partial void Ondiengiai_idChanging(System.Nullable<int> value);
     partial void Ondiengiai_idChanged();
-    partial void OnpriceChanging(System.Nullable<double> value);
-    partial void OnpriceChanged();
-    partial void OnsoluongChanging(System.Nullable<int> value);
-    partial void OnsoluongChanged();
     #endregion
 		
 		public tbChiTieuChiTiet()
@@ -865,46 +857,6 @@ namespace QuanLyChiTieu
 					this._diengiai_id = value;
 					this.SendPropertyChanged("diengiai_id");
 					this.Ondiengiai_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
-		public System.Nullable<double> price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this.OnpriceChanging(value);
-					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_soluong", DbType="Int")]
-		public System.Nullable<int> soluong
-		{
-			get
-			{
-				return this._soluong;
-			}
-			set
-			{
-				if ((this._soluong != value))
-				{
-					this.OnsoluongChanging(value);
-					this.SendPropertyChanging();
-					this._soluong = value;
-					this.SendPropertyChanged("soluong");
-					this.OnsoluongChanged();
 				}
 			}
 		}
