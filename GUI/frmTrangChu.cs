@@ -56,7 +56,23 @@ namespace QuanLyChiTieu
             chitieu.Sender(_user);
             nhung(chitieu);
         }
-        private void đăngXuấtToolStripMenuItem_Click_1(object sender, EventArgs e)
+     
+
+        private void trongThángToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongKe thongke = new frmThongKe();
+            thongke.Sender(_user);
+            nhung(thongke);
+        } 
+     
+        private void theoNgàyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongKeTheoNgay tketheongay = new frmThongKeTheoNgay();
+            tketheongay.Sender(_user);
+            nhung(tketheongay);
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message = "Bạn có muốn đăng xuất?";
             string title = "Thông báo";
@@ -72,11 +88,9 @@ namespace QuanLyChiTieu
             {; }
         }
 
-        private void trongThángToolStripMenuItem_Click(object sender, EventArgs e)
+        private void hướngDẫnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmThongKe thongke = new frmThongKe();
-            thongke.Sender(_user);
-            nhung(thongke);
+            ;
         }
 
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,13 +98,6 @@ namespace QuanLyChiTieu
             frmDoiMatKhau doimatkhau = new frmDoiMatKhau();
             doimatkhau.Sender(_user);
             nhung(doimatkhau);
-        }
-
-        private void theoNgàyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmThongKeTheoNgay tketheongay = new frmThongKeTheoNgay();
-            tketheongay.Sender(_user);
-            nhung(tketheongay);
         }
     }
 }
